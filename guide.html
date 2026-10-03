@@ -79,9 +79,23 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
 .weather { table-layout: fixed; }
 .weather th:first-child, .weather td:first-child { width: 112px; }
 .card > h3:first-child, .card > p:first-child { margin-top: 0; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ic { width: 1.15em; height: 1.15em; vertical-align: -.2em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.px { vertical-align: -.2em; flex-shrink: 0; margin-right: .25em; shape-rendering: crispEdges; }
 </style>
 </head>
 <body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="p-whale-mini" viewBox="0 0 12 9"><path fill="#6396D6" d="M9 0h1v1h-1zM11 0h1v1h-1zM10 1h1v1h-1zM8 3h1v2h-1zM8 6h1v1h-1z"/><path fill="#2F5B9A" d="M2 1h6v1h-6zM9 1h1v1h-1zM11 1h1v1h-1zM1 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM0 3h1v4h-1zM9 3h1v4h-1zM1 7h1v1h-1zM8 7h1v1h-1zM2 8h6v1h-6z"/><path fill="#7DB0E8" d="M2 2h1v1h-1zM5 2h3v1h-3zM1 3h1v2h-1zM4 3h4v1h-4zM3 4h4v1h-4zM3 5h1v1h-1zM6 5h1v1h-1zM1 6h3v1h-3zM6 6h2v1h-2z"/><path fill="#B8D8F7" d="M3 2h2v1h-2zM2 3h2v1h-2z"/><path fill="#1C2A44" d="M2 4h1v1h-1zM7 4h1v1h-1zM4 5h2v1h-2z"/><path fill="#FF9EA6" d="M1 5h2v1h-2zM7 5h2v1h-2z"/><path fill="#E86F7E" d="M4 6h2v1h-2z"/><path fill="#E6F2FD" d="M2 7h6v1h-6z"/></symbol>
+  <symbol id="p-bottle" viewBox="0 0 11 5"><path fill="#4F9C9E" d="M1 0h6v1h-6zM0 1h1v3h-1zM7 1h2v1h-2zM7 3h2v1h-2zM1 4h6v1h-6z"/><path fill="#BFF0EA" d="M1 1h1v1h-1zM6 1h1v1h-1zM6 2h3v1h-3zM1 3h1v1h-1zM6 3h1v1h-1z"/><path fill="#FFF1CF" d="M2 1h4v1h-4zM2 2h1v1h-1zM4 2h2v1h-2zM2 3h4v1h-4z"/><path fill="#B07A4E" d="M9 1h2v3h-2z"/><path fill="#FFFFFF" d="M1 2h1v1h-1z"/><path fill="#9B7FD4" d="M3 2h1v1h-1z"/></symbol>
+  <symbol id="p-calm" viewBox="0 0 9 8"><path fill="#9FD3F5" d="M1 0h2v1h-2zM8 0h1v1h-1zM0 1h1v1h-1zM3 1h1v1h-1zM7 1h1v1h-1zM4 2h3v1h-3z"/><path fill="#5B8FD6" d="M1 1h2v1h-2zM8 1h1v1h-1zM0 2h1v1h-1zM3 2h1v1h-1zM7 2h1v1h-1zM4 3h3v1h-3z"/><path fill="#7DB0E8" d="M1 4h2v1h-2zM8 4h1v1h-1zM0 5h1v1h-1zM3 5h1v1h-1zM7 5h1v1h-1zM4 6h3v1h-3z"/><path fill="#2F5B9A" d="M1 5h2v1h-2zM8 5h1v1h-1zM0 6h1v1h-1zM3 6h1v1h-1zM7 6h1v1h-1zM4 7h3v1h-3z"/></symbol>
+  <symbol id="p-swirl" viewBox="0 0 9 9"><path fill="#9A6410" d="M4 0h3v1h-3zM3 1h1v1h-1zM7 1h1v1h-1zM2 2h1v1h-1zM8 2h1v2h-1zM1 3h1v2h-1zM7 4h1v1h-1zM0 5h1v3h-1zM0 8h9v1h-9z"/><path fill="#FFE9A8" d="M4 1h1v1h-1zM3 2h1v1h-1zM2 3h1v1h-1z"/><path fill="#E0A93A" d="M5 1h2v1h-2zM4 2h1v1h-1zM6 2h2v1h-2zM3 3h1v1h-1zM7 3h1v1h-1zM2 4h2v1h-2zM6 4h1v1h-1zM1 5h3v1h-3zM1 6h4v1h-4zM1 7h6v1h-6z"/></symbol>
+  <symbol id="p-storm" viewBox="0 0 9 9"><path fill="#FFFFFF" d="M3 0h3v1h-3zM2 1h1v1h-1zM6 1h2v1h-2zM1 2h1v1h-1zM8 2h1v3h-1zM0 3h1v2h-1zM1 5h2v1h-2zM5 5h3v1h-3z"/><path fill="#6A5DB0" d="M3 1h1v1h-1zM2 2h1v1h-1z"/><path fill="#3A2F6B" d="M4 1h2v1h-2zM3 2h5v1h-5zM1 3h7v1h-7zM1 4h3v1h-3zM6 4h2v1h-2z"/><path fill="#FFD84A" d="M4 4h2v1h-2zM3 5h2v1h-2zM2 6h3v1h-3zM4 7h1v1h-1z"/><path fill="#F2811E" d="M5 6h1v2h-1zM3 8h1v1h-1z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.5 5.6Q12 3 13.5 5.6L20 17.4Q21.5 20 18.5 20H5.5Q2.5 20 4 17.4Z"/><path d="M12 9.5v4"/><circle cx="12" cy="16.7" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="3"/><path d="M14.5 11V7.5a3.5 3.5 0 0 1 7 0v1"/><circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="3"/><path d="M4 10.5h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M3 12c2.4-3.8 5.4-5.5 9-5.5s6.6 1.7 9 5.5c-2.4 3.8-5.4 5.5-9 5.5S5.4 15.8 3 12z"/><circle cx="12" cy="12" r="2.4"/></symbol>
+</svg>
 <header class="top">
   <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAWfmNhQlgAABZ+anVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAFlhqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjBkOTNkMjM0LTU0OTMtNGMyZi1iYWJhLTgwM2M3NzQ5MzAwOAAAAAOTanVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAuGp1bWIAAABEanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5pbmdyZWRpZW50LnYzAAAAABhjMnNoo/AyRVNn1czvycQ4821+SgAAAGxjYm9yo2lkYzpmb3JtYXRpaW1hZ2UvcG5namluc3RhbmNlSUR4LHhtcDppaWQ6NWJjMzM4NGEtOGVjNi00NDc3LTk4YTAtOWZiMDMyMGFlNzkzbHJlbGF0aW9uc2hpcGhwYXJlbnRPZgAAAeJqdW1iAAAAQWp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuYWN0aW9ucy52MgAAAAAYYzJzaNXMi1ymf2IZJzWgnNdL69kAAAGZY2JvcqJnYWN0aW9uc4KiZmFjdGlvbmtjMnBhLm9wZW5lZGpwYXJhbWV0ZXJzoWtpbmdyZWRpZW50c4GiY3VybHgtc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5pbmdyZWRpZW50LnYzZGhhc2hYIGNSxTz7ykdek74K0iJx8ul3/dXiO1Ie0Y1rja8PNB7NpGZhY3Rpb254HWNvbS5hbnRocm9waWMuY2xhdWRlLnByb3ZpZGVkanBhcmFtZXRlcnOheB9jb20uYW50aHJvcGljLm9yaWdpbi1jb25maWRlbmNlZ3Vua25vd25rZGVzY3JpcHRpb254ZkNsYXVkZSBwcm92aWRlZCB0aGlzIGZpbGUgYXQgdGhlIHJlcXVlc3Qgb2YgYSB1c2VyIGFuZCBtYXkgaGF2ZSBjcmVhdGVkIG9yIG1vZGlmaWVkIHRoZSBmaWxlIGNvbnRlbnRzLm1zb2Z0d2FyZUFnZW50oWRuYW1lZkNsYXVkZXJhbGxBY3Rpb25zSW5jbHVkZWT1AAAAyGp1bWIAAABAanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5oYXNoLmRhdGEAAAAAGGMyc2jqiB1R32YKjtjGLCpCDhtBAAAAgGNib3KlY2FsZ2ZzaGEyNTZjcGFkTQAAAAAAAAAAAAAAAABkaGFzaFggr+ttTxFZC4avaGp0D845qGAebLCefxl8+q30VxiAs1dkbmFtZW5qdW1iZiBtYW5pZmVzdGpleGNsdXNpb25zgaJlc3RhcnQYIWZsZW5ndGgZFooAAAI+anVtYgAAACdqdW1kYzJjbAARABCAAACqADibcQNjMnBhLmNsYWltLnYyAAAAAg9jYm9ypWNhbGdmc2hhMjU2aXNpZ25hdHVyZXhNc2VsZiNqdW1iZj0vYzJwYS91cm46YzJwYTowZDkzZDIzNC01NDkzLTRjMmYtYmFiYS04MDNjNzc0OTMwMDgvYzJwYS5zaWduYXR1cmVqaW5zdGFuY2VJRHgseG1wOmlpZDplNTAwY2FlOS1iN2FhLTQxNzUtOTM4ZC1jYTZkZmVmNjJjYzFyY3JlYXRlZF9hc3NlcnRpb25zg6JjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggY1LFPPvKR16TvgrSInHy6Xf91eI7Uh7RjWuNrw80Hs2iY3VybHgqc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5hY3Rpb25zLnYyZGhhc2hYILo478acsp8XkbYtTKekMBT+gm4hZ1/lBfxYaHsDyw0vomN1cmx4KXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaGFzaC5kYXRhZGhhc2hYIC8pfmbEzBNfHiekUvoAbATskAES001CrLdmXwiBkE+KdGNsYWltX2dlbmVyYXRvcl9pbmZvo2RuYW1lb0FudGhyb3BpYyBGaWxlc2d2ZXJzaW9uZTEuMC4wa3NwZWNWZXJzaW9uZTIuNC4wAAAQOGp1bWIAAAAoanVtZGMyY3MAEQAQgAAAqgA4m3EDYzJwYS5zaWduYXR1cmUAAAAQCGNib3LShFkCEqIBJhghWQIKMIICBjCCAY2gAwIBAgIUQOWgCu7COdC+uIP6BkIFPWdVEwAwCgYIKoZIzj0EAwMwSTEXMBUGA1UEChMOQW50aHJvcGljLCBQQkMxLjAsBgNVBAMTJUFudGhyb3BpYyBDb250ZW50IENyZWRlbnRpYWxzIFJvb3QgQ0EwHhcNMjYwODA3MTg0MzU2WhcNMjgwODA2MTk0MzU2WjBEMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEpMCcGA1UEAxMgQW50aHJvcGljIENsYXVkZSBDb250ZW50IFNpZ25pbmcwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASYegpry1AYBRTVNL1CpTlbROnY3dey+UrsF9C3phYrATN3ZHf93Mo8RQN0KOUuOn19P4oWNFWe5n2/She9N7eTo1gwVjAOBgNVHQ8BAf8EBAMCB4AwFQYDVR0lBA4wDAYKKwYBBAGD6F4CATAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFM5R4gSBTmRbI/jjxM+aPpzB11zCMAoGCCqGSM49BAMDA2cAMGQCMDFzHRSeAXrSy1WOzkbhPZ6Km2wGTmZ/2gK18k8BQGXyqz88Rdrz6CTX9flAnYNVxgIwcF9c3fVhqmJKpi+UhasNUMko69cyX6STPfta3Q8EjyzDjzoyrol46FP6VFHhvUcJoWNwYWRZDZ4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt="">
   <h1>고래실록 사용법</h1>
@@ -118,7 +132,7 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
         <li>열 때마다 <b>가림 화면</b>(밤섬과 고래)이 먼저 나와요. 화면을 누르면 열려요.</li>
       </ol>
     </div>
-    <div class="card tip"><p>🐋 기록은 이 기기의 브라우저에만 저장돼요. 다른 사람은 볼 수 없고, 선생님의 다른 기기와도 자동으로 이어지지 않아요.</p></div>
+    <div class="card tip"><p><svg class="px" aria-hidden="true" width="24" height="18"><use href="#p-whale-mini"/></svg> 기록은 이 기기의 브라우저에만 저장돼요. 다른 사람은 볼 수 없고, 선생님의 다른 기기와도 자동으로 이어지지 않아요.</p></div>
   </section>
 
   <section id="sidebar">
@@ -146,7 +160,7 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
     <h2>수업 중 모드와 시간만 찍기</h2>
     <div class="card">
       <h3>시간만 찍기</h3>
-      <p>가림 화면의 <b>시간만 찍기</b>를 누르면 화면을 열지 않고 그 시각만 기록돼요. 단축키 <span class="kbd">Alt</span> + <span class="kbd">T</span>, 가림 화면에서는 <span class="kbd">Enter</span>도 돼요. 잘못 찍었으면 바로 아래 "되돌리기"를 눌러요.</p>
+      <p>가림 화면의 <b>시간만 찍기</b>를 누르면 화면을 열지 않고 그 시각만 기록돼요. PC에서는 단축키 <span class="kbd">Alt</span> + <span class="kbd">T</span>, 가림 화면에서는 <span class="kbd">Enter</span>도 돼요. 잘못 찍었으면 바로 아래 "되돌리기"를 눌러요.</p>
       <h3>수업 중 모드</h3>
       <ul>
         <li>위쪽 <b>수업 중</b>을 누르면 켜져요. 입력하는 글자가 흐리게 보이고, 첫 글자를 치는 순간 사건 시각이 찍혀요.</li>
@@ -162,16 +176,16 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
     <h2>퀵록</h2>
     <div class="card">
       <ul>
-        <li><b>간편</b>: 있었던 일을 그냥 적고 <b>기록</b>을 누르면 끝이에요. <span class="kbd">Ctrl</span> + <span class="kbd">Enter</span>도 돼요. 학생 이름만 들어가 있으면 나중에 찾을 수 있어요.</li>
+        <li><b>간편</b>: 있었던 일을 그냥 적고 <b>기록</b>을 누르면 끝이에요. PC에서는 <span class="kbd">Ctrl</span> + <span class="kbd">Enter</span>도 돼요. 학생 이름만 들어가 있으면 나중에 찾을 수 있어요.</li>
         <li><b>꼼꼼</b>: 관련 학생, 장소·시간, 상황, 교사 대응을 칸별로 적어요. 모든 칸은 선택이에요.</li>
-        <li>저장하면 "기록 완료" 인장이 찍히고, <b>10초 안에는 되돌릴 수 있어요.</b> 그 뒤로 원본은 고칠 수 없어요.</li>
+        <li>저장하면 "기록 완료" 인장이 찍히고, <b>기록</b> 버튼 옆에 "되돌리기"가 10초 동안 보여요. 다음 기록을 적기 시작하면 사라지고, 그 뒤로 원본은 고칠 수 없어요.</li>
         <li>글을 보고 유형이 자동으로 붙어요:
           <span class="chip c-grow">성장</span><span class="chip c-hak">학폭</span><span class="chip c-kyo">교권</span><span class="chip c-min">민원</span><span class="chip c-life">생활지도</span><span class="chip c-gap">갑질</span>
           틀렸으면 타임라인에서 한 번 눌러 바꾸면 돼요.</li>
         <li>아이의 노력이나 좋은 모습을 적으면 <b>성장</b> 기록이 돼요. 문제만이 아니라 좋은 날도 함께 남겨 주세요.</li>
         <li>관리자나 동료 교직원에게 부당한 지시, 폭언, 사적인 요구를 받았다면 학생 이름 없이 그대로 적어 두세요. <b>갑질</b>로 분류되고, 타임라인에서 모아 보거나 PDF로 정리할 수 있어요.</li>
         <li>섬 그림을 누르면 고래가 다른 말을 해요.</li>
-        <li><b>💌 나에게 쪽지</b>: 섬에 떠 있는 유리병이나 퀵록 아래 "💌 나에게 쪽지"를 누르면 열려요. 뿌듯했던 순간, 동료의 따뜻한 한마디, 나에게 해 주고 싶은 말을 적어 넣어 두세요. <b>힘들 때나 응원이 필요할 때</b> 다시 열면 넣어 둔 쪽지가 한 장씩 무작위로 나와요. "다른 쪽지 꺼내기"로 계속 꺼내 볼 수 있어요. 선생님만 보는 공간이라 학생 기록과는 섞이지 않고, 타임라인이나 PDF에도 나오지 않아요.</li>
+        <li><b><svg class="px" aria-hidden="true" width="22" height="10"><use href="#p-bottle"/></svg> 나에게 쪽지</b>: 섬에 떠 있는 유리병이나 퀵록 아래 "나에게 쪽지"를 누르면 열려요. 뿌듯했던 순간, 동료의 따뜻한 한마디, 나에게 해 주고 싶은 말을 적어 넣어 두세요. <b>힘들 때나 응원이 필요할 때</b> 다시 열면 넣어 둔 쪽지가 한 장씩 무작위로 나와요. "다른 쪽지 꺼내기"로 계속 꺼내 볼 수 있어요. 선생님만 보는 공간이라 학생 기록과는 섞이지 않고, 타임라인이나 PDF에도 나오지 않아요.</li>
       </ul>
     </div>
   </section>
@@ -197,18 +211,18 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
           <ul>
             <li><b>보호자 말</b>: 받은 문자나 통화 내용을 넣고, 문자로 답하기 / 통화 중을 골라 <b>응대 준비</b>.</li>
             <li><b>먼저 연락</b>: 상담 요청, 생활 안내·협조, 성장 소식, 사안 알림 중 목적을 고르고 <b>연락 문구 만들기</b>.</li>
-            <li><b>🐋 고래에게 묻기</b>: 선생님만 보는 질문이에요. "상대 보호자 연락처 알려 줘도 되나요?"처럼 궁금한 걸 물어요. 저경력 선생님들이 자주 묻는 질문은 눌러서 바로 물어볼 수 있고, 앞 질문을 기억해서 이어서 답해요.</li>
+            <li><b><svg class="px" aria-hidden="true" width="24" height="18"><use href="#p-whale-mini"/></svg> 고래에게 묻기</b>: 선생님만 보는 질문이에요. "상대 보호자 연락처 알려 줘도 되나요?"처럼 궁금한 걸 물어요. 저경력 선생님들이 자주 묻는 질문은 눌러서 바로 물어볼 수 있고, 앞 질문을 기억해서 이어서 답해요.</li>
           </ul>
         </li>
         <li>고래 메모의 날씨와 핵심을 보고, <b>보낼 문구</b>를 고쳐서 <b>복사</b>해 보내요. 스마트폰에서는 <b>보내기</b>를 누르면 문자나 메신저를 골라 바로 보낼 수 있어요.</li>
-        <li>먼저 연락에서 <b>상담 요청</b>을 만들면 <b>📅 상담 일정을 캘린더에 넣기</b>로 일정 파일을 만들 수 있어요. 네이버·구글·아웃룩 캘린더 어디든 들어가요.</li>
+        <li>먼저 연락에서 <b>상담 요청</b>을 만들면 <b><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg> 상담 일정을 캘린더에 넣기</b>로 일정 파일을 만들 수 있어요. 네이버·구글·아웃룩 캘린더 어디든 들어가요.</li>
         <li>다 끝나면 맨 아래 <b>◆ 응대 마침 ◆</b>을 눌러요. 마친 응대는 <b>지난 응대</b>에 남고, 떠올리기 힘든 응대는 펼쳐서 <b>이 응대 지우기</b>로 지울 수 있어요. 지우면 되돌릴 수 없으니 필요하면 먼저 PDF로 저장해 두세요.</li>
       </ol>
       <table class="weather">
         <tr><th>바다 날씨</th><th>뜻</th></tr>
-        <tr><td>🌊 잔잔</td><td>일반적인 연락이에요.</td></tr>
-        <tr><td>🌀 파도 조심</td><td>감정이 격하거나 요구가 커질 수 있어요.</td></tr>
-        <tr><td>⛈ 폭풍</td><td>폭언, 위협, 성희롱 등 교권침해 가능성이 있어요. 응대를 마치면 고래의 위로 창과 할 일(기록, 특이민원 발생보고서 초안, 1395)이 떠요.</td></tr>
+        <tr><td><svg class="px" aria-hidden="true" width="18" height="16"><use href="#p-calm"/></svg> 잔잔</td><td>일반적인 연락이에요.</td></tr>
+        <tr><td><svg class="px" aria-hidden="true" width="18" height="18"><use href="#p-swirl"/></svg> 파도 조심</td><td>감정이 격하거나 요구가 커질 수 있어요.</td></tr>
+        <tr><td><svg class="px" aria-hidden="true" width="18" height="18"><use href="#p-storm"/></svg> 폭풍</td><td>폭언, 위협, 성희롱 등 교권침해 가능성이 있어요. 응대를 마치면 고래의 위로 창과 할 일(기록, 특이민원 발생보고서 초안, 1395)이 떠요.</td></tr>
       </table>
     </div>
     <div class="card tip"><p>추천 문구는 짧고 단호한 하십시오체로 나와요. 법 조항은 보호자에게 말하지 않고, 고래 메모의 "근거"로만 보여 줘요. 보내기 전에 꼭 읽고 고쳐 주세요. 아무것도 자동으로 보내지 않아요.</p></div>
@@ -221,7 +235,7 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
         <li><b>찾기</b>에 학생 이름이나 단어(예: 한고래, 교감)를 넣고, <b>유형</b>에서 필요한 것만 골라요. 유형 줄은 옆으로 밀면 더 있어요.</li>
         <li><b>전체</b>는 모든 기록과 보호자 응대를 함께 담아요. 교권보호위원회나 사안 보고용이에요.</li>
         <li><b>성장</b>만 고르면 한 아이의 성장 기록(상담·세특용), <b>보호자 응대</b>만 고르면 주고받은 말 전문(특이민원 보고용), <b>갑질</b>만 고르면 갑질 피해 기록으로 정리돼요.</li>
-        <li><b>담을 기록 고르기</b>를 펼치면 모인 기록이 날짜순으로 나와요. 같은 학생이라도 이번 사안과 상관없는 기록은 체크를 풀면 빠져요. 내용은 가려져 있고, <b>👁 내용 보기</b>를 누르면 한꺼번에 보여요.</li>
+        <li><b>담을 기록 고르기</b>를 펼치면 모인 기록이 날짜순으로 나와요. 같은 학생이라도 이번 사안과 상관없는 기록은 체크를 풀면 빠져요. 내용은 가려져 있고, <b><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg> 내용 보기</b>를 누르면 한꺼번에 보여요.</li>
         <li>작성자를 정하고 <b>PDF로 저장</b>을 누르면 돼요. 작성자는 한 번 적으면 기억해요.</li>
         <li><b>표 복사</b>를 누르면 미리보기의 표가 복사돼요. 한글이나 워드에 붙여 넣으면 표 모양 그대로 들어가요.</li>
         <li><b>PDF에 암호 걸기</b>를 켜면 PDF를 열 때 암호를 물어봐요. 메일이나 메신저로 보낼 때 써 주세요. 암호는 파일과 따로 전해 주세요.</li>
@@ -239,7 +253,7 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
         <li><b>다른 기기로 옮기기</b>: 지금 기기에서 내보내기 → 메일이나 메신저 나와의 채팅으로 옮기기 → 새 기기에서 불러오기.</li>
       </ul>
     </div>
-    <div class="card warn"><p>⚠️ 브라우저 설정에서 <b>쿠키 및 사이트 데이터</b>를 지우면 기록이 모두 지워져요. 지우기 전에 꼭 내보내 두세요. 암호는 파일과 같은 곳에 적지 말고, 옮긴 뒤 채팅방의 파일은 지워 주세요.</p></div>
+    <div class="card warn"><p><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg> 브라우저 설정에서 <b>쿠키 및 사이트 데이터</b>를 지우면 기록이 모두 지워져요. 지우기 전에 꼭 내보내 두세요. 암호는 파일과 같은 곳에 적지 말고, 옮긴 뒤 채팅방의 파일은 지워 주세요.</p></div>
   </section>
 
   <section id="ai">
@@ -272,7 +286,7 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
     <div class="card">
       <ul>
         <li>모든 기록은 선생님 브라우저에만 저장되고, 서버로 보내지 않아요.</li>
-        <li>기록 내용은 모든 화면에서 기본으로 흐리게 가려져 있어요. 맨 위 <b>🔓 자물쇠</b>를 눌러 잠금을 켜면 열 때마다 비밀번호를 물어요. 다른 앱으로 넘어가면 다시 잠기고, 시간만 찍기는 잠긴 채로도 돼요. "지금 잠그기"로 바로 잠글 수도 있어요.</li>
+        <li>기록 내용은 모든 화면에서 기본으로 흐리게 가려져 있어요. 맨 위 <b><svg class="ic" aria-hidden="true"><use href="#i-unlock"/></svg> 자물쇠</b>를 눌러 잠금을 켜면 열 때마다 비밀번호를 물어요. 다른 앱으로 넘어가면 다시 잠기고, 시간만 찍기는 잠긴 채로도 돼요. "지금 잠그기"로 바로 잠글 수도 있어요.</li>
         <li>고래실록은 학생이 쓰지 않는 교사용 도구예요.</li>
         <li>고래의 판단과 추천 문구는 <b>참고용</b>이며 법률 자문을 대신하지 않아요. 교육활동 침해 여부는 교권보호위원회가 판단하고, 학교폭력처럼 절차가 정해진 일은 학교 담당자와 함께 확인해 주세요.</li>
         <li>원본 보존과 시각 기록은 기록의 신뢰도를 높이기 위한 장치이며, 법적 증거력을 보장하지는 않아요.</li>
@@ -284,13 +298,13 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
     <h2>자주 묻는 질문</h2>
     <div class="card">
       <h3>잘못 적었는데 고칠 수 있나요?</h3>
-      <p>저장 후 10초 안에는 되돌리기로 다시 쓸 수 있어요. 그 뒤로는 원본을 고칠 수 없고, 타임라인에서 <b>추가 메모</b>로 바로잡거나 덧붙여 주세요.</p>
+      <p>저장한 뒤 10초 동안, 다음 기록을 적기 전이라면 기록 버튼 옆 "되돌리기"로 다시 쓸 수 있어요. 그 뒤로는 원본을 고칠 수 없고, 타임라인에서 <b>추가 메모</b>로 바로잡거나 덧붙여 주세요.</p>
       <h3>스마트폰이나 태블릿 등 다른 기기에서도 쓸 수 있나요?</h3>
       <p>네, 같은 주소로 열면 돼요. 다만 기록은 기기마다 따로 저장되니, 백업 파일로 옮겨 주세요.</p>
       <h3>잠금 비밀번호를 잊었어요.</h3>
       <p>비밀번호는 되찾을 수 없어요. 기록을 지키기 위해서예요. 정말 기억나지 않는다면 브라우저 설정에서 사이트 데이터를 지운 뒤, 백업 파일을 다시 불러와 주세요. 잠금 화면에서 다섯 번 틀리면 30초 동안 기다려야 해요.</p>
       <h3>처음 안내를 다시 보고 싶어요.</h3>
-      <p>백업 탭 맨 아래 "처음 안내 다시 보기"를 눌러요.</p>
+      <p>백업 탭 맨 아래 "처음 안내"를 눌러요.</p>
     </div>
   </section>
 
