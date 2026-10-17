@@ -774,6 +774,9 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .delconfirm p { margin: 0 0 8px; }
 .delconfirm .delyes { background: var(--storm) !important; border-color: var(--storm) !important; color: #fff !important; }
 /* 고래에게 묻기 자주 묻는 질문 */
+.pendtag { margin: 0 0 6px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; word-break: keep-all; }
+.pendtag b { display: inline-block; padding: 1px 8px; margin-right: 6px; border-radius: 10px; font-weight: 700; background: color-mix(in srgb, #E2B84A 22%, var(--paper)); color: var(--ink); border: 1px solid color-mix(in srgb, #E2B84A 60%, var(--line)); }
+.pendtag b.q { background: color-mix(in srgb, var(--whale) 12%, var(--paper)); border-color: color-mix(in srgb, var(--whale) 40%, var(--line)); }
 .askfaq { display: none; margin: 0 -2px 8px; }
 .composer.asking .askfaq { display: block; }
 .askfaq summary { font-size: 12.5px; color: var(--ink-soft); cursor: pointer; margin: 0 2px 6px; }
@@ -1430,6 +1433,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
         </div>
       </div>
       <div class="simple">
+        <div class="pendtag" id="pendTag" hidden></div>
         <textarea id="input" placeholder="지금 있었던 일을 그냥 적어두세요.&#10;이름만 들어가 있으면 나중에 찾을 수 있어요." aria-label="기록 내용"></textarea>
       </div>
       <div class="detail">
@@ -1954,7 +1958,13 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     return !!(v.type || FIELDS.some(function (f) { return v[f.key]; }));
   }
   function updateSave() {
-    if (!input.value.trim() && mode !== "detail") { pendingSource = null; pendingType = ""; } save.disabled = !hasContent(); }
+    if (!input.value.trim() && mode !== "detail") { pendingSource = null; pendingType = ""; } save.disabled = !hasContent(); showPend(); }
+  function showPend() {
+    var el = $("pendTag"); if (!el) return;
+    if (!pendingSource && !pendingType) { el.hidden = true; return; }
+    el.hidden = false;
+    el.innerHTML = (pendingType === "성장" ? '<b>🌱 성장 기록으로 저장돼요</b>' : '<b class="q">퀵록 · 유형은 고래가 분류</b>') + (pendingSource ? "출처 " + esc(srcLabel(pendingSource)) : "");
+  }
   function clearForm() { input.value = ""; FIELDS.forEach(function (f) { $(f.id).value = ""; }); setType(null); }
   var LINES = [
     "오늘도 많이 애쓰셨어요. 여기엔 있는 그대로 적어도 괜찮아요.",
@@ -2135,7 +2145,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       var srcObj = d.src && d.src.url && /^https?:/.test(String(d.src.url)) ? { title: String(d.src.title || "").slice(0, 120), url: String(d.src.url).slice(0, 300), at: d.at || new Date().toISOString() } : null;
       if (d.type === "quick" || d.type === "grow") {
         openTab("quick"); setMode("simple", true); input.value = text; updateSave(); onNewEntry();
-        pendingSource = srcObj; pendingType = d.type === "grow" ? "성장" : "";
+        pendingSource = srcObj; pendingType = d.type === "grow" ? "성장" : ""; showPend();
         if ($("curtain").hidden) input.focus();
         showToast(d.type === "grow" ? "고른 글을 성장 기록으로 담았어요. 확인하고 기록을 눌러 주세요." : "고른 글을 퀵록에 담았어요. 확인하고 기록을 눌러 주세요.");
       } else if (d.type === "parent") {
@@ -2176,6 +2186,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     } else rec.text = input.value.trim();
     if (pendingSource) { rec.source = pendingSource; pendingSource = null; }
     if (pendingType) { rec.userType = pendingType; pendingType = ""; }
+    showPend();
     records.push(rec);
     if (!persist()) { records.pop(); showToast("저장 공간에 쓸 수 없어요. 브라우저 설정을 확인해 주세요."); return; }
     askKeep();
@@ -2222,7 +2233,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
           setType(r.fields.type || null);
         } else { setMode("simple", true); input.value = r.text; }
         updateSave();
-        pendingSource = r.source || null; pendingType = r.userType || ""; // 확장앱으로 담았던 글이면 출처와 유형도 함께 돌려놓는다
+        pendingSource = r.source || null; pendingType = r.userType || ""; showPend(); // 확장앱으로 담았던 글이면 출처와 유형도 함께 돌려놓는다
       }
     }
     hideSaved();
