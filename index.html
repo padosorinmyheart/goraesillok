@@ -2920,6 +2920,12 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
   }
   function listHtml(arr) { return "<ul>" + arr.map(function (x) { return "<li>" + rich(x) + "</li>"; }).join("") + "</ul>"; }
   var openTurns = {};
+  function factText(r) {
+    var t = r.summary ? ["무엇을", "어떻게", "교사 대응"].map(function (k) { var v = r.summary.items[k]; return v && v !== "기록 없음" ? v : ""; }).filter(Boolean).join(" ")
+      : r.fields ? [r.fields.situation, r.fields.response].filter(Boolean).join(" ")
+      : (r.timeOnly && filled(r) ? filled(r).text : r.text);
+    return oneLine(String(t || "").replace(/^\(시간만 기록\)$/, ""), 80);
+  }
   function oneLine(t, n) { t = String(t || "").replace(/\s+/g, " ").trim(); return t.length > n ? t.slice(0, n) + "…" : t; }
   function renderThread() {
     var box = $("thread"); box.innerHTML = "";
@@ -3131,7 +3137,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     var gd = (c.goodDates || []).map(function (d) { return shortDate(new Date(d)); });
     var good = gd.length ? "요즘 " + name + " 학생은 좋은 모습도 많이 보여 주고 있습니다. " + gd[gd.length - 1] + "에는 [그날의 좋은 모습]이 있었습니다." : "";
     var dates = (c.dates || []).map(function (d) { return shortDate(new Date(d)); }).filter(function (d, i, arr) { return arr.indexOf(d) === i; }).slice(-3);
-    var list = dates.length ? dates.map(function (d) { return "- " + d + ": [그날 있었던 일과 지도한 내용을 한 줄로]"; }).join("\n") : "- [날짜]: [그날 있었던 일과 지도한 내용을 한 줄로]";
+    var facts = (c.facts || []); var list = facts.length ? facts.map(function (f) { return "- " + shortDate(new Date(f.at)) + ": " + f.t; }).join("\n") : dates.length ? dates.map(function (d) { return "- " + d + ": [그날 있었던 일과 지도한 내용을 한 줄로]"; }).join("\n") : "- [날짜]: [그날 있었던 일과 지도한 내용을 한 줄로]";
     var nd = new Date(), off = nd.getDay() === 0 || nd.getDay() === 6 || nd.getHours() < 8 || nd.getHours() >= 17;
     var avoid = ["'죄송합니다', '유감입니다' 같은 사과 표현", "그 자리에서 약속하거나 결론 내리기", "다른 학생 이름이나 사정 이야기하기"];
     var intent = forced || detectIntent(c, msg, way);
@@ -3139,6 +3145,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     var HIGHV = function (why) { return { 판단: "높음", 이유: why, 권장조치: ["해당 발언 **원문과 일시**를 그대로 기록해 두세요.", "통화 **녹음이나 문자 캡처**를 보관하세요.", "학교에 알리고 **특이민원 발생보고서**를 쓰세요.", "교권침해 직통번호 **1395**에서 신고·법률·심리 지원을 받을 수 있어요."] }; };
     function out(o) {
       o.요지 = o.요지 || ""; o.사실관계 = o.사실관계 || []; o.피할말 = o.피할말 || avoid; o.예상질문 = []; o.intent = intent;
+      if ((c.facts || []).length && /\n- \d+월/.test(o.초안 || "")) o.핵심 = (o.핵심 || "") + " · 문자에 **내 기록 원문**을 넣어 두었어요. **다른 학생 이름**은 지우고 보호자께 드릴 말로 다듬어 보내세요.";
       return o;
     }
     // 공통 조립: core(문장들), empath(공감 한 문장)
@@ -3257,7 +3264,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       요지: "일반 문의", 핵심: good ? "**성장 기록**으로 먼저 문을 열어요. **[ ] 부분**을 채워서 쓰세요." : "AI 없이 만든 기본 틀이에요. **[ ] 부분**을 채워서 쓰세요.",
       empath: mild ? "이 일로 많이 속상하셨겠습니다." : "",
       core: [good, "말씀하신 일은 그날 제가 남긴 기록으로 다시 확인했습니다.\n" + list].filter(Boolean),
-      사실관계: dates.map(function (d) { return d + " 기록이 있어요."; }),
+      사실관계: (c.facts || []).length ? c.facts.map(function (f) { return shortDate(new Date(f.at)) + " · " + f.t; }) : dates.map(function (d) { return d + " 기록이 있어요."; }),
       근거: off ? "생활지도 고시: 교원은 **근무시간 밖 상담**을 거부할 수 있고, 민원은 **학교 공식 창구**로 받아요." : "민원은 교사 개인이 아니라 **학교 공식 창구와 민원대응팀**이 기관으로 대응해요." });
   }
 
@@ -3464,7 +3471,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     var name = c.student || "학생", me = authorName() || "[과목/담임] 교사 [이름]", meIs = me + "입니다";
     var gd = (c.goodDates || []).map(function (d) { return shortDate(new Date(d)); });
     var dates = (c.dates || []).map(function (d) { return shortDate(new Date(d)); }).filter(function (d, i, arr) { return arr.indexOf(d) === i; }).slice(-3);
-    var list = dates.length ? dates.map(function (d) { return "- " + d + ": [있었던 일을 한 줄로]"; }).join("\n") : "- [날짜]: [있었던 일을 한 줄로]";
+    var facts = (c.facts || []); var list = facts.length ? facts.map(function (f) { return "- " + shortDate(new Date(f.at)) + ": " + f.t; }).join("\n") : dates.length ? dates.map(function (d) { return "- " + d + ": [있었던 일을 한 줄로]"; }).join("\n") : "- [날짜]: [있었던 일을 한 줄로]";
     var nt = String(note || "").trim();
     var greet = "안녕하세요, " + name + " 학생 보호자님. " + meIs + ".";
     var good = gd.length ? " 요즘 " + name + " 학생은 " + gd[gd.length - 1] + "에 [그날의 좋은 모습]을 보여 주는 등 좋은 모습도 보여 주고 있습니다." : "";
@@ -3545,7 +3552,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       var studentTok = names.length ? maskText(name, names).text : name;
       var now = new Date().toISOString();
       return { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), student: name, createdAt: now, updatedAt: now,
-        recordCount: hits.length, names: names, map: base.map, dates: bad.map(function (r) { return r.createdAt; }), goodDates: good.map(function (r) { return r.createdAt; }),
+        recordCount: hits.length, names: names, map: base.map, dates: bad.map(function (r) { return r.createdAt; }), facts: bad.map(function (r) { return { at: r.createdAt, t: factText(r) }; }).filter(function (f) { return f.t; }), goodDates: good.map(function (r) { return r.createdAt; }),
         context: RULES + "대상 학생: " + studentTok + "\n\n교사가 남긴 기록:\n\"\"\"\n" + (parts[0].trim() || "(선택된 기록 없음)") + "\n\"\"\"\n\n" +
           (good.length ? "같은 학생의 성장 기록 (노력, 변화, 좋은 모습):\n\"\"\"\n" + parts[1].trim() + "\n\"\"\"\n좋은 모습 기록이 있으므로, 보호자 말에 폭언·위협·성희롱처럼 선을 넘는 표현이 없을 때에만 '초안'의 첫머리를 그 기록 속 구체적인 모습 한 가지로 부드럽게 여세요. 기록에 있는 사실만 쓰고, 칭찬으로 문제를 덮거나 흥정하는 느낌이 들지 않게 하세요. '핵심'에서도 이 이야기로 시작하라고 알려 주세요.\n\n" : ""),
         convo: [], turns: [], asks: [] };
