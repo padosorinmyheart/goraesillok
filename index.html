@@ -714,6 +714,10 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .pwrow .textfield { flex: 1; min-width: 0; height: 36px; font-size: 13.5px; }
 .pwrow[hidden] { display: none; }
 .pwrow .primary { padding: 0 16px; height: 36px; flex-shrink: 0; font-size: 14px; }
+.aikey .aik-st { margin-left: auto; font-size: 12px; color: var(--ink-soft); }
+.aikey .aik-st.on { color: var(--tide); font-weight: 700; }
+.aikey .pwrow { margin-top: 8px; }
+.aikey a { color: var(--tide); }
 .bkcard .bknote { margin: 8px 2px 0; font-size: 12.5px; color: var(--ink-soft); }
 .bkguide ol, .bkguide ul { font-size: 13px; line-height: 1.65; }
 .intro { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(12,16,44,.78); }
@@ -1488,7 +1492,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       <details class="mini" id="maskBox">
         <summary>🔒 AI에 보낼 때 가릴 이름 · <span id="maskPreview">없음</span></summary>
         <input id="r_mask" class="textfield" type="text" placeholder="예: 한고래, 윤바다" autocomplete="off" style="margin-top:8px">
-        <p class="desc" style="margin:6px 2px 0">적은 이름은 학생A, 학생B로 바꿔서 보내요. 나머지 기록과 보호자 말은 AI(Claude)로 전송돼요.</p>
+        <p class="desc" style="margin:6px 2px 0">적은 이름은 학생A, 학생B로 바꿔서 보내요. 나머지 기록과 보호자 말은 AI로 전송돼요.</p>
       </details>
     </div>
     <div id="caseHead" class="casehead" hidden></div>
@@ -1666,6 +1670,19 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       </div>
       <p class="bknote">겹치는 기록은 건너뛰고 새 기록만 더해요.</p>
       <div class="bkconf" id="bkConfIn" hidden></div>
+    </div>
+
+    <div class="savebar bkbar aikey" id="aiKeyBox" hidden>
+      <div class="savebar-top">
+        <span class="bk-title"><b>AI 연결</b><small>선택</small></span>
+        <span class="aik-st" id="aiKeySt">연결 안 됨</span>
+      </div>
+      <div class="pwrow">
+        <input id="aiKeyIn" class="textfield" type="password" placeholder="Gemini 또는 Claude API 키 붙여 넣기" autocomplete="off" spellcheck="false">
+        <button type="button" class="primary" id="aiKeySave">연결</button>
+      </div>
+      <p class="bknote">무료로 시작하려면 <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>에서 Gemini 키를 받아 붙여 넣어요. 키는 이 기기에만 저장돼요.<br>연결하면 응대 문구·육하원칙 정리·고래에게 묻기를 AI가 도와요. AI에 보낼 땐 기록이 키를 낸 회사(Google 또는 Anthropic)로 전송되니, 학생 이름은 <b>가릴 이름</b>에 적어 가려 주세요.</p>
+      <button type="button" class="ctforgot" id="aiKeyDel" hidden style="color:var(--ink-soft)">연결 끊기</button>
     </div>
 
     <div class="bkinfo">
@@ -2390,11 +2407,91 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     window.claude.use("sample").then(function (fn) { sampleFn = fn; sampleChecked = true; aiNote(); }, function () { sampleChecked = true; aiNote(); });
   } else sampleChecked = true;
   var IN_CLAUDE = !!(window.claude && typeof window.claude.use === "function");
+  /* ---------- 내 AI 키 연결 (웹 버전) ---------- */
+  var AIKEY_KEY = "goraesillok.aikey";
+  function getAiKey() { try { return localStorage.getItem(AIKEY_KEY) || ""; } catch (e) { return ""; } }
+  function keyKind(k) { return /^sk-ant-/.test(k) ? "claude" : /^AIza/.test(k) ? "gemini" : ""; }
+  function parseJsonLoose(t) {
+    t = String(t || "").replace(/^\s*```(?:json)?/i, "").replace(/```\s*$/, "").trim();
+    try { return JSON.parse(t); } catch (e) {}
+    var i = t.indexOf("{"), j = t.lastIndexOf("}");
+    if (i >= 0 && j > i) { try { return JSON.parse(t.slice(i, j + 1)); } catch (e) {} }
+    throw { code: "bad_output" };
+  }
+  function httpErr(st) { return { code: st === 429 ? "rate_limited" : (st === 400 || st === 401 || st === 403) ? "not_granted" : "network" }; }
+  function makeKeySample(key) {
+    var kind = keyKind(key);
+    function toTurns(input) { return typeof input === "string" ? [{ role: "user", content: input }] : input; }
+    var SYS = "반드시 JSON 객체 하나로만 답하세요. 코드 블록 표시 없이 JSON만 출력합니다.";
+    function callGemini(turns, models) {
+      var m = models[0];
+      return fetch("https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent?key=" + encodeURIComponent(key), {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ systemInstruction: { parts: [{ text: SYS }] },
+          contents: turns.map(function (t) { return { role: t.role === "assistant" ? "model" : "user", parts: [{ text: String(t.content) }] }; }),
+          generationConfig: { responseMimeType: "application/json", temperature: 0.4 } })
+      }).then(function (res) {
+        if (res.status === 404 && models.length > 1) return callGemini(turns, models.slice(1));
+        if (!res.ok) throw httpErr(res.status);
+        return res.json().then(function (d) {
+          var p = d && d.candidates && d.candidates[0] && d.candidates[0].content && d.candidates[0].content.parts;
+          return parseJsonLoose((p || []).map(function (x) { return x.text || ""; }).join(""));
+        });
+      });
+    }
+    function callClaude(turns) {
+      return fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
+        body: JSON.stringify({ model: "claude-haiku-4-5", max_tokens: 2000, system: SYS, messages: turns.map(function (t) { return { role: t.role === "assistant" ? "assistant" : "user", content: String(t.content) }; }) })
+      }).then(function (res) {
+        if (!res.ok) throw httpErr(res.status);
+        return res.json().then(function (d) { return parseJsonLoose((d.content || []).map(function (x) { return x.text || ""; }).join("")); });
+      });
+    }
+    var fn = function (input) { return fn.json(input).then(function (o) { return { text: JSON.stringify(o), truncated: false }; }); };
+    fn.json = function (input) {
+      var turns = toTurns(input);
+      var p = kind === "claude" ? callClaude(turns) : callGemini(turns, ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]);
+      return p.catch(function (e) { throw (e && e.code) ? e : { code: "network" }; });
+    };
+    fn.viaKey = kind;
+    return fn;
+  }
+  function applyAiKey() {
+    if (IN_CLAUDE) return;
+    var k = getAiKey();
+    sampleFn = keyKind(k) ? makeKeySample(k) : null; sampleChecked = true;
+    var box = document.getElementById("aiKeyBox");
+    if (box) {
+      box.hidden = false;
+      var st = document.getElementById("aiKeySt"), on = !!sampleFn;
+      st.textContent = on ? (sampleFn.viaKey === "claude" ? "Claude 연결됨" : "Gemini 연결됨") : "연결 안 됨"; st.className = "aik-st" + (on ? " on" : "");
+      document.getElementById("aiKeyDel").hidden = !on;
+      document.getElementById("aiKeyIn").placeholder = on ? "다른 키로 바꾸려면 붙여 넣기" : "Gemini 또는 Claude API 키 붙여 넣기";
+    }
+    var mb = document.getElementById("maskBox"); if (mb) mb.hidden = !sampleFn;
+    if (typeof aiNote === "function") aiNote();
+  }
   $("maskBox").hidden = !IN_CLAUDE; // 이름 가림은 AI에 보낼 때만 쓰이므로 웹에서는 감춘다
+  applyAiKey();
+  $("aiKeySave").addEventListener("click", function () {
+    var k = $("aiKeyIn").value.trim();
+    if (!keyKind(k)) { showToast("Gemini 키(AIza로 시작)나 Claude 키(sk-ant-로 시작)를 붙여 넣어 주세요."); return; }
+    var btn = $("aiKeySave"); btn.disabled = true; btn.textContent = "확인 중…";
+    makeKeySample(k).json('{"ok": true} 라고만 답하세요.').then(function () {
+      try { localStorage.setItem(AIKEY_KEY, k); } catch (e) {}
+      $("aiKeyIn").value = ""; applyAiKey(); showToast("AI를 연결했어요");
+    }, function (e) {
+      showToast(e && e.code === "not_granted" ? "키가 맞지 않아요. 다시 확인해 주세요." : e && e.code === "rate_limited" ? "요청이 많아요. 잠시 뒤 다시 눌러 주세요." : "연결하지 못했어요. 인터넷과 키를 확인해 주세요.");
+    }).then(function () { btn.disabled = false; btn.textContent = "연결"; });
+  });
+  $("aiKeyIn").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); $("aiKeySave").click(); } });
+  $("aiKeyDel").addEventListener("click", function () { try { localStorage.removeItem(AIKEY_KEY); } catch (e) {} applyAiKey(); showToast("AI 연결을 끊었어요"); });
   function aiNote() {
     var n = document.getElementById("aiNote"); if (!n) return;
     n.innerHTML = IN_CLAUDE ? "지금은 AI 없이 <b>기본 틀</b>로 도와드려요. Claude에 로그인하면 상황에 맞춘 추천을 받을 수 있어요."
-      : "이 웹 버전은 AI 없이 <b>기본 틀</b>과 위험 표현 감지로 도와드려요. 공식 지침에 맞춘 문구가 나와요.";
+      : "지금은 AI 없이 <b>기본 틀</b>로 도와드려요. <b>백업</b> 탭에서 <b>AI 연결</b>(무료 Gemini 키)을 하면 상황에 맞춘 문구를 받아요.";
     // 웹에서는 응대를 시작하기 전 빈 화면에서만 알린다
     n.hidden = !(sampleChecked && !sampleFn) || (!IN_CLAUDE && !!currentCase);
   }
@@ -2564,7 +2661,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       return;
     }
     if (!sampleFn) {
-      if (sampleChecked && IN_CLAUDE) el.innerHTML = '<p class="sum-note">Claude에 로그인하면 AI로 육하원칙 정리를 할 수 있어요.</p>';
+      if (sampleChecked) el.innerHTML = '<p class="sum-note">' + (IN_CLAUDE ? "Claude에 로그인하면 AI로 육하원칙 정리를 할 수 있어요." : "백업 탭에서 <b>AI 연결</b>을 하면 육하원칙으로 정리할 수 있어요.") + "</p>";
       return;
     }
     var a2 = document.createElement("div"); a2.className = "acts aiacts";
@@ -2576,7 +2673,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     var pre = r.fields && r.fields.students ? r.fields.students : lastNameGuess();
     el.innerHTML = '<div class="maskbox"><label>AI에 보내기 전에 가릴 이름</label>' +
       '<input class="textfield" type="text" autocomplete="off" placeholder="예: 한고래, 윤바다">' +
-      "<p>여기 적은 이름은 학생A, 학생B로 바꿔서 보내고, 돌아오면 다시 이름으로 바꿔요. 이름 말고 나머지 기록 내용은 AI(Claude)로 전송돼요.</p>" +
+      "<p>여기 적은 이름은 학생A, 학생B로 바꿔서 보내고, 돌아오면 다시 이름으로 바꿔요. 이름 말고 나머지 기록 내용은 AI로 전송돼요.</p>" +
       '<div class="acts"><button type="button" class="go">정리하기</button><button type="button" data-a="cancel">취소</button></div></div>';
     var inp = el.querySelector("input"); inp.value = pre; inp.focus();
     el.querySelector('[data-a="cancel"]').addEventListener("click", function () { renderAI(r, el); });
@@ -2889,7 +2986,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       var nm = splitTerms($("r_name").value).join(" ");
       var cnt = replyHits().filter(function (r) { return picked[r.id]; }).length;
       $("barName").textContent = nm ? nm + " 학생" : "학생을 골라 주세요";
-      $("barMeta").textContent = nm ? "근거 기록 " + cnt + "건" + (IN_CLAUDE ? " · 이름 가림 " + nameList($("r_mask").value).length + "명" : "") : IN_CLAUDE ? "근거 기록과 이름 가림 설정" : "근거로 쓸 기록 고르기";
+      $("barMeta").textContent = nm ? "근거 기록 " + cnt + "건" + ((IN_CLAUDE || sampleFn) ? " · 이름 가림 " + nameList($("r_mask").value).length + "명" : "") : (IN_CLAUDE || sampleFn) ? "근거 기록과 이름 가림 설정" : "근거로 쓸 기록 고르기";
       if (!nm && document.activeElement !== $("r_name")) p.classList.add("bar-open");
     }
     var w = WX[wx] || WX["없음"];
