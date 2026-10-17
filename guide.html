@@ -35,19 +35,19 @@ a { color: var(--lilac); }
   color: var(--star); padding: calc(28px + env(safe-area-inset-top, 0px)) 20px 30px; border-radius: 0 0 20px 20px; text-align: center;
 }
 .top .logo { width: 64px; height: 64px; image-rendering: pixelated; border-radius: 14px; }
-.top h1 { font-family: "Gowun Batang", serif; font-size: 26px; margin: 10px 0 2px; letter-spacing: .04em; }
-.top p { margin: 0; color: #CFC6F0; font-family: "Gowun Batang", serif; }
-.top .go { display: inline-block; margin-top: 16px; padding: 9px 20px; border-radius: 8px; background: #C3A6FF; color: #1B1F52; text-decoration: none; font-weight: 700; font-family: "Gowun Batang", serif; }
+.top h1 { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 26px; margin: 10px 0 2px; letter-spacing: .04em; }
+.top p { margin: 0; color: #CFC6F0; font-family: "GowunBatangLocal", "Gowun Batang", serif; }
+.top .go { display: inline-block; margin-top: 16px; padding: 9px 20px; border-radius: 8px; background: #C3A6FF; color: #1B1F52; text-decoration: none; font-weight: 700; font-family: "GowunBatangLocal", "Gowun Batang", serif; }
 .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px 40px; }
 nav.toc { margin: 18px 0 0; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; }
-nav.toc b { font-family: "Gowun Batang", serif; }
+nav.toc b { font-family: "GowunBatangLocal", "Gowun Batang", serif; }
 nav.toc ol { margin: 6px 0 0; padding-left: 20px; columns: 2; column-gap: 24px; font-size: 14px; }
 nav.toc a { color: var(--ink); text-decoration: none; }
 nav.toc a:hover { color: var(--lilac); }
 section { margin-top: 26px; }
-h2 { font-family: "Gowun Batang", serif; font-size: 20px; margin: 0 0 8px; display: flex; align-items: center; gap: 9px; }
+h2 { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 20px; margin: 0 0 8px; display: flex; align-items: center; gap: 9px; }
 h2::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--lilac); transform: rotate(45deg); flex-shrink: 0; }
-h3 { font-family: "Gowun Batang", serif; font-size: 16px; margin: 16px 0 4px; }
+h3 { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 16px; margin: 16px 0 4px; }
 .card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-top: 10px; }
 .card p { margin: 0 0 6px; }
 .card ul, .card ol { margin: 4px 0 0; padding-left: 20px; }
@@ -59,10 +59,10 @@ h3 { font-family: "Gowun Batang", serif; font-size: 16px; margin: 16px 0 4px; }
 .c-grow { border-color: var(--t-grow); } .c-hak { border-color: var(--t-hak); } .c-kyo { border-color: var(--t-kyo); } .c-min { border-color: var(--t-min); } .c-life { border-color: var(--t-life); } .c-gap { border-color: #9AA6BA; }
 table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 6px; }
 th, td { border-bottom: 1px solid var(--line); padding: 7px 6px; text-align: left; vertical-align: top; }
-th { font-family: "Gowun Batang", serif; white-space: nowrap; }
+th { font-family: "GowunBatangLocal", "Gowun Batang", serif; white-space: nowrap; }
 .weather td:first-child { white-space: nowrap; }
 footer { margin-top: 34px; padding: 18px 0 8px; border-top: 1px solid var(--line); text-align: center; font-size: 13px; color: var(--ink-soft); }
-footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
+footer .copy { font-family: "GowunBatangLocal", "Gowun Batang", serif; color: var(--ink); }
 @media (max-width: 520px) { nav.toc ol { columns: 1; } }
 .refs h3 { font-size: 14.5px; margin: 12px 0 2px; color: var(--ink-soft); }
 .refs h3:first-child { margin-top: 0; }
@@ -82,6 +82,12 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 .ic { width: 1.15em; height: 1.15em; vertical-align: -.2em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 .px { vertical-align: -.2em; flex-shrink: 0; margin-right: .25em; shape-rendering: crispEdges; }
+</style>
+<style>
+@font-face { font-family: "GowunBatangLocal"; font-weight: 400; font-display: swap; src: url("gowun-batang-400.woff2") format("woff2"); }
+@font-face { font-family: "GowunBatangLocal"; font-weight: 700; font-display: swap; src: url("gowun-batang-700.woff2") format("woff2"); }
+@font-face { font-family: "GowunBatangLocal"; font-weight: 400; font-display: swap; src: url("gowun-batang-latin-400.woff2") format("woff2"); unicode-range: U+0000-00FF; }
+@font-face { font-family: "GowunBatangLocal"; font-weight: 700; font-display: swap; src: url("gowun-batang-latin-700.woff2") format("woff2"); unicode-range: U+0000-00FF; }
 </style>
 </head>
 <body>
@@ -160,7 +166,7 @@ footer .copy { font-family: "Gowun Batang", serif; color: var(--ink); }
     <h2>수업 중 모드와 시간만 찍기</h2>
     <div class="card">
       <h3>시간만 찍기</h3>
-      <p>가림 화면의 <b>시간만 찍기</b>를 누르면 화면을 열지 않고 그 시각만 기록돼요. 단축키 <span class="kbd">Alt</span> + <span class="kbd">T</span>도 돼요. 잘못 찍었으면 바로 아래 "되돌리기"를 눌러요.</p>
+      <p>가림 화면의 <b>시간만 찍기</b>를 누르면 화면을 열지 않고 그 시각만 기록돼요. 단축키 <span class="kbd">Alt</span> + <span class="kbd">T</span>도 돼요. 잘못 찍었으면 바로 아래 "되돌리기"를 눌러요. 되돌리기를 놓쳤다면, 타임라인에서 그 기록을 펼쳐 <b>이 시간 기록 지우기</b>로 지울 수 있어요. 내용을 채운 기록은 지워지지 않아요.</p>
       <h3>수업 중 모드</h3>
       <ul>
         <li>위쪽 <b>수업 중</b>을 누르면 켜져요. 입력하는 글자가 흐리게 보이고, 첫 글자를 치는 순간 사건 시각이 찍혀요.</li>

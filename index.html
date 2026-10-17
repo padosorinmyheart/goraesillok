@@ -46,11 +46,11 @@ body {
   font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased;
 }
 .wrap { max-width: 480px; margin: 0 auto; padding: 0 16px 48px; }
-.serif { font-family: "Gowun Batang", "Nanum Myeongjo", serif; }
+.serif { font-family: "GowunBatangLocal", "Gowun Batang", "Nanum Myeongjo", serif; }
 
 /* header + tabs */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--sea); padding-top: 12px; }
-.brand { font-family: "Gowun Batang", "Nanum Myeongjo", serif; font-weight: 700; font-size: 19px; letter-spacing: .02em; margin: 0 2px 8px; }
+.brand { font-family: "GowunBatangLocal", "Gowun Batang", "Nanum Myeongjo", serif; font-weight: 700; font-size: 19px; letter-spacing: .02em; margin: 0 2px 8px; }
 .brand span { font-size: 19px; }
 .tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--line); }
 .tabs::-webkit-scrollbar { display: none; }
@@ -110,7 +110,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 #input {
   display: block; width: 100%; min-height: 150px; resize: vertical; border: 0; outline: none;
   background: transparent; color: var(--ink); padding: 0;
-  font-family: "Gowun Batang", "Nanum Myeongjo", serif; font-size: 16.5px; line-height: 1.75;
+  font-family: "GowunBatangLocal", "Gowun Batang", "Nanum Myeongjo", serif; font-size: 16.5px; line-height: 1.75;
 }
 #input::placeholder, .detail ::placeholder { color: var(--ink-soft); opacity: .7; }
 .detail { display: none; }
@@ -121,7 +121,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .field > span { display: block; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 4px; }
 .detail input, .detail textarea {
   display: block; width: 100%; border: 1px solid var(--line); border-radius: 8px; background: transparent;
-  color: var(--ink); outline: none; font-family: "Gowun Batang", "Nanum Myeongjo", serif;
+  color: var(--ink); outline: none; font-family: "GowunBatangLocal", "Gowun Batang", "Nanum Myeongjo", serif;
   font-size: 15.5px; line-height: 1.6; padding: 7px 10px;
 }
 .detail textarea { min-height: 76px; resize: vertical; }
@@ -136,7 +136,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   position: absolute; right: 16px; top: 40px; width: 54px; height: 54px;
   border: 2.5px solid var(--seal); color: var(--seal); border-radius: 6px;
   display: grid; place-items: center; text-align: center;
-  font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13px; line-height: 1.15;
+  font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13px; line-height: 1.15;
   transform: rotate(-8deg) scale(1.6); opacity: 0; pointer-events: none;
 }
 .seal.on { animation: stamp 1.6s ease-out forwards; }
@@ -156,7 +156,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 13.5px; line-height: 1.55;
   box-shadow: none; transition: opacity .35s ease, transform .35s ease;
 }
-.bubble::before { content: "고래"; position: absolute; left: 14px; top: -13px; background: #6FA2E0; color: #fff; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 12.5px; padding: 2px 11px 1px; border-radius: 10px; border: 2px solid #FFF8E6; box-shadow: none; }
+.bubble::before { content: "고래"; position: absolute; left: 14px; top: -13px; background: #6FA2E0; color: #fff; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 12.5px; padding: 2px 11px 1px; border-radius: 10px; border: 2px solid #FFF8E6; box-shadow: none; }
 .bubble::after { content: ""; position: absolute; right: 64px; bottom: -11px; width: 16px; height: 16px; background: #FFF8E6; border-right: 3px solid #EAD7AE; border-bottom: 3px solid #EAD7AE; transform: rotate(45deg); border-bottom-right-radius: 4px; }
 .bubble.fade { opacity: 0; transform: translateY(4px); }
 .bubble small { display: block; font-family: "Noto Sans KR", sans-serif; font-size: 11px; color: #A08E70; margin-top: 3px; }
@@ -205,7 +205,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   position: relative; background: #FFF6DE; color: #4A3B28; border-radius: 6px; padding: 16px 16px 12px;
   box-shadow: 0 2px 0 #E6D3A8, 0 6px 14px rgba(0,0,0,.12);
   background-image: repeating-linear-gradient(transparent 0 27px, rgba(155,127,212,.18) 27px 28px);
-  font-family: "Gowun Batang", "Nanum Myeongjo", serif; font-size: 15.5px; line-height: 28px; white-space: pre-wrap; word-break: keep-all;
+  font-family: "GowunBatangLocal", "Gowun Batang", "Nanum Myeongjo", serif; font-size: 15.5px; line-height: 28px; white-space: pre-wrap; word-break: keep-all;
 }
 .note::before { content: ""; position: absolute; top: -6px; left: 50%; width: 46px; height: 12px; margin-left: -23px; background: #9B7FD4; opacity: .75; border-radius: 3px; transform: rotate(-3deg); }
 .note small { display: block; font-family: "Noto Sans KR", sans-serif; font-size: 12px; color: #8A7658; margin-top: 8px; line-height: 1.4; }
@@ -220,7 +220,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .isle.pixel:not(.day) .px-day, .isle.pixel.day .px-night { display: none; }
 .isle.day { background: #8FD0F6; }
 
-.clsbtn { margin-left: auto; align-self: center; border: 1px solid rgba(255,246,213,.35); background: transparent; color: rgba(255,246,213,.85); border-radius: 7px; padding: 3px 10px; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 12.5px; cursor: pointer; white-space: nowrap; }
+.clsbtn { margin-left: auto; align-self: center; border: 1px solid rgba(255,246,213,.35); background: transparent; color: rgba(255,246,213,.85); border-radius: 7px; padding: 3px 10px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 12.5px; cursor: pointer; white-space: nowrap; }
 .clsbtn[aria-pressed="true"] { background: #C3A6FF; border-color: #C3A6FF; color: #1B1F52; }
 #p-quick.classmode .isle, #p-quick.classmode #today, #p-quick.classmode .modes, #p-quick.classmode .seal { display: none !important; }
 #p-quick.classmode .card { border-color: color-mix(in srgb, var(--lilac) 45%, var(--line)); }
@@ -240,7 +240,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .rec::before { content: ""; position: absolute; left: -16px; top: 15px; width: 9px; height: 9px; border-radius: 50%; background: var(--sea); border: 2px solid var(--tide); }
 .time { font-size: 12px; color: var(--ink-soft); display: block; margin-bottom: 2px; }
 .text {
-  font-family: "Gowun Batang", "Nanum Myeongjo", serif; font-size: 15px; line-height: 1.7;
+  font-family: "GowunBatangLocal", "Gowun Batang", "Nanum Myeongjo", serif; font-size: 15px; line-height: 1.7;
   white-space: pre-wrap; word-break: keep-all; overflow-wrap: anywhere;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
@@ -259,7 +259,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .sum-h small { font-size: 11.5px; color: var(--ink-soft); }
 .sum dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; margin: 0; }
 .sum dt { font-size: 12px; color: var(--ink-soft); padding-top: 2px; white-space: nowrap; }
-.sum dd { margin: 0; font-family: "Gowun Batang", "Nanum Myeongjo", serif; font-size: 14.5px; line-height: 1.65; word-break: keep-all; overflow-wrap: anywhere; }
+.sum dd { margin: 0; font-family: "GowunBatangLocal", "Gowun Batang", "Nanum Myeongjo", serif; font-size: 14.5px; line-height: 1.65; word-break: keep-all; overflow-wrap: anywhere; }
 .sum dd.no { color: var(--ink-soft); opacity: .7; font-family: inherit; font-size: 12.5px; }
 .sum-note { font-size: 12px; color: var(--ink-soft); margin: 8px 0 0; line-height: 1.55; }
 .acts { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
@@ -280,7 +280,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 #draft {
   display: block; width: 100%; min-height: 260px; resize: vertical; border: 1px solid var(--line); border-radius: 12px;
   background: var(--paper); color: var(--ink); padding: 12px 14px; outline: none;
-  font-family: "Gowun Batang", "Nanum Myeongjo", serif; font-size: 15px; line-height: 1.75;
+  font-family: "GowunBatangLocal", "Gowun Batang", "Nanum Myeongjo", serif; font-size: 15px; line-height: 1.75;
 }
 #draft:focus-visible { border-color: var(--tide); }
 .seg { display: flex; width: 100%; }
@@ -292,7 +292,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .case .tx { display: none; padding: 2px 0 8px; }
 .case.open .tx { display: block; }
 .case.open .caseitem .veil { filter: none; user-select: text; }
-.bub.mine .said { font-family: "Gowun Batang", serif; font-size: 14.5px; line-height: 1.7; white-space: pre-wrap; background: var(--paper); border-radius: 8px; padding: 8px 10px; }
+.bub.mine .said { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 14.5px; line-height: 1.7; white-space: pre-wrap; background: var(--paper); border-radius: 8px; padding: 8px 10px; }
 .caseitem .badge { display: inline-block; font-size: 11px; color: var(--seal); border: 1px solid var(--seal); border-radius: 8px; padding: 0 6px; margin-left: 4px; }
 .step { background: color-mix(in srgb, var(--whale) 7%, var(--paper)); border: 1px solid color-mix(in srgb, var(--whale) 28%, var(--line)); border-radius: 14px; padding: 12px; margin-top: 10px; }
 .step[hidden] { display: none; }
@@ -327,8 +327,8 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .bub .who { display: block; font-size: 11.5px; color: var(--ink-soft); margin-bottom: 3px; white-space: normal; }
 .bub.parent { background: var(--paper); border: 1px solid var(--line); margin-right: 28px; border-top-left-radius: 4px; }
 .bub.mine { background: color-mix(in srgb, var(--tide) 12%, var(--paper)); border: 1px solid color-mix(in srgb, var(--tide) 35%, transparent); margin: 8px 0 0 28px; border-top-right-radius: 4px; white-space: normal; }
-.bub.mine .core { font-family: "Gowun Batang", serif; font-size: 14.5px; margin: 0 0 8px; }
-.bub.mine textarea { display: block; width: 100%; min-height: 150px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); padding: 9px 11px; outline: none; font-family: "Gowun Batang", "Nanum Myeongjo", serif; font-size: 15px; line-height: 1.7; }
+.bub.mine .core { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 14.5px; margin: 0 0 8px; }
+.bub.mine textarea { display: block; width: 100%; min-height: 150px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); padding: 9px 11px; outline: none; font-family: "GowunBatangLocal", "Gowun Batang", "Nanum Myeongjo", serif; font-size: 15px; line-height: 1.7; }
 .bub.mine textarea:focus-visible { border-color: var(--tide); }
 .bub.mine .edited { font-size: 11.5px; color: var(--ink-soft); margin-top: 4px; }
 .bub details { margin-top: 8px; font-size: 13.5px; }
@@ -349,7 +349,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .adv h3 { font-size: 13px; margin: 0 0 6px; color: var(--tide); }
 .adv ul { margin: 0; padding-left: 16px; font-size: 14px; line-height: 1.6; }
 .adv li { margin-bottom: 3px; }
-.adv .key { font-family: "Gowun Batang", serif; font-size: 15px; line-height: 1.65; margin: 0; }
+.adv .key { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 15px; line-height: 1.65; margin: 0; }
 .adv .qa { margin: 0 0 8px; font-size: 14px; line-height: 1.6; }
 .adv .qa b { display: block; color: var(--ink); font-weight: 500; }
 .adv .qa span { display: block; color: var(--ink-soft); }
@@ -363,7 +363,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   background: #fff; color: #1d2733; padding: 28px 24px; min-width: 320px;
   font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 12.5px; line-height: 1.6;
 }
-.doc h3 { font-family: "Gowun Batang", serif; font-size: 20px; margin: 0 0 12px; letter-spacing: .02em; color: #15304A; }
+.doc h3 { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 20px; margin: 0 0 12px; letter-spacing: .02em; color: #15304A; }
 .doc .meta { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; font-size: 12px; margin-bottom: 14px; color: #3b4a5a; }
 .doc .meta b { font-weight: 500; color: #6b7a88; }
 .doc table { width: 100%; border-collapse: collapse; font-size: 12px; }
@@ -414,7 +414,7 @@ input[type="date"].textfield { padding: 0 8px; }
 
 /* ===== 고래실록 스타일 ===== */
 :root { --night1: #1B1F52; --night2: #2F2E78; --star: #FFF6D5; --radius: 8px; }
-.serifui, .tab, .primary, .ghost, .chips button, .seg button, .acts button, .more, .step-h, .section-title h2, .sheet-h b, .casehead b, .caseitem span b, .bubble::before, #today button, .lbl-sm { font-family: "Gowun Batang", "Nanum Myeongjo", serif; }
+.serifui, .tab, .primary, .ghost, .chips button, .seg button, .acts button, .more, .step-h, .section-title h2, .sheet-h b, .casehead b, .caseitem span b, .bubble::before, #today button, .lbl-sm { font-family: "GowunBatangLocal", "Gowun Batang", "Nanum Myeongjo", serif; }
 .top {
   margin: 0 -16px; padding: 14px 16px 0;
   background:
@@ -425,7 +425,7 @@ input[type="date"].textfield { padding: 0 8px; }
   border-radius: 0 0 16px 16px; box-shadow: 0 3px 0 rgba(27,31,82,.18);
 }
 .brand { color: var(--star); display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
-.brand small { font-family: "Gowun Batang", serif; font-weight: 400; font-size: 12px; color: #BDB3E6; letter-spacing: .04em; }
+.brand small { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 400; font-size: 12px; color: #BDB3E6; letter-spacing: .04em; }
 .tabs { border-bottom: 0; gap: 0; }
 .tab { color: rgba(255,246,213,.62); font-size: 14.5px; font-weight: 700; padding: 8px 5px 18px; flex: 1 1 auto; min-width: 0; }
 .tab[aria-selected="true"] { font-weight: 700; }
@@ -456,7 +456,7 @@ input[type="date"].textfield { padding: 0 8px; }
 .section-title h2 { display: flex; align-items: center; gap: 7px; font-size: 15px; }
 .section-title h2::before { content: ""; width: 6px; height: 6px; border-radius: 1.5px; background: var(--lilac); transform: rotate(45deg); flex-shrink: 0; }
 .step-h { font-size: 15px; }
-.day { font-family: "Gowun Batang", serif; font-weight: 700; color: var(--ink); }
+.day { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; color: var(--ink); }
 .desc { line-height: 1.65; }
 
 /* ===== 보호자 응대: 고래와 작전 회의 (대화방) ===== */
@@ -469,7 +469,7 @@ input[type="date"].textfield { padding: 0 8px; }
 .cb-who { display: flex; align-items: center; gap: 9px; flex: 1; min-width: 0; }
 .cb-av { width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; background: color-mix(in srgb, var(--whale) 22%, var(--paper)); font-size: 18px; flex-shrink: 0; }
 .cb-who > span:last-child { min-width: 0; }
-.cb-who b { display: block; font-family: "Gowun Batang", serif; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cb-who b { display: block; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cb-who small { display: block; font-size: 12px; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cb-wx { font-size: 12px; padding: 3px 8px; border-radius: 7px; background: color-mix(in srgb, var(--whale) 16%, var(--paper)); white-space: nowrap; }
 .cb-wx.wave { background: color-mix(in srgb, #E0A93A 20%, var(--paper)); }
@@ -492,7 +492,7 @@ input[type="date"].textfield { padding: 0 8px; }
 .wnote { display: none; }
 #p-reply.chat .wnote { display: flex; gap: 8px; align-items: flex-start; margin: 10px 20px 0 0; }
 .wnote .wa { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: color-mix(in srgb, var(--whale) 22%, var(--paper)); font-size: 16px; flex-shrink: 0; }
-.wnote .wb { background: color-mix(in srgb, var(--whale) 10%, var(--paper)); border: 1px dashed color-mix(in srgb, var(--whale) 45%, var(--line)); border-radius: 4px 12px 12px 12px; padding: 7px 11px; font-family: "Gowun Batang", serif; font-size: 14px; line-height: 1.6; }
+.wnote .wb { background: color-mix(in srgb, var(--whale) 10%, var(--paper)); border: 1px dashed color-mix(in srgb, var(--whale) 45%, var(--line)); border-radius: 4px 12px 12px 12px; padding: 7px 11px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 14px; line-height: 1.6; }
 .wnote .wb small { display: block; font-family: "Noto Sans KR", sans-serif; font-size: 11.5px; color: var(--ink-soft); margin-bottom: 1px; }
 .wnote .wb ul { margin: 4px 0 0; padding-left: 16px; font-family: "Noto Sans KR", sans-serif; font-size: 13px; }
 #p-reply.chat .alert { display: none; }
@@ -529,14 +529,14 @@ mark.kw-high { background: color-mix(in srgb, var(--storm) 28%, transparent); co
 mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: inherit; font-weight: 700; border-radius: 3px; padding: 0 2px; }
 .memos { background: var(--paper); border: 1px solid color-mix(in srgb, var(--lilac) 30%, var(--line)); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
 .memo-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; }
-.memo-h b { font-family: "Gowun Batang", serif; font-size: 14px; }
+.memo-h b { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 14px; }
 .memo-h small { font-size: 11.5px; color: var(--ink-soft); }
 .memo { border-left: 2px solid var(--lilac); padding: 2px 0 2px 9px; margin: 8px 0; }
 .memo .time { margin-bottom: 0; }
 .memo .mt { font-size: 14px; line-height: 1.6; white-space: pre-wrap; word-break: keep-all; overflow-wrap: anywhere; }
 .memos textarea { margin-top: 6px; min-height: 58px; height: auto; padding: 8px 10px; line-height: 1.55; resize: none; background: var(--sea); }
 
-.goodbtn { border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft); border-radius: 7px; padding: 6px 10px; font-family: "Gowun Batang", serif; font-size: 13px; cursor: pointer; flex-shrink: 0; }
+.goodbtn { border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft); border-radius: 7px; padding: 6px 10px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 13px; cursor: pointer; flex-shrink: 0; }
 .goodbtn[aria-pressed="true"] { background: color-mix(in srgb, #F2C35B 26%, var(--paper)); border-color: #D9A93A; color: var(--ink); font-weight: 700; }
 .card.is-good { border-color: #D9A93A; background: color-mix(in srgb, #F2C35B 8%, var(--paper)); }
 .rec.good { background: color-mix(in srgb, #F2C35B 13%, var(--paper)); }
@@ -553,7 +553,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
   border: 0; background: none; color: var(--ink-soft); cursor: pointer; padding: 6px 4px;
   display: flex; align-items: center; gap: 10px; transition: color .15s;
 }
-.sealbtn span { font-family: "Gowun Batang", serif; font-weight: 700; font-size: 15px; letter-spacing: .14em; }
+.sealbtn span { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 15px; letter-spacing: .14em; }
 .sealbtn::before, .sealbtn::after { content: ""; width: 6px; height: 6px; border-radius: 1.5px; background: var(--lilac); transform: rotate(45deg); flex-shrink: 0; }
 .sealbtn:hover, .sealbtn:focus-visible { color: var(--ink); }
 .sealbtn:active { opacity: .6; }
@@ -563,17 +563,17 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 @media (prefers-reduced-motion: reduce) { .sealbtn.stamp { animation: none; } }
 .comfort { text-align: center; padding: 22px 20px 18px; }
 .c-whale { font-size: 46px; line-height: 1; margin-bottom: 8px; animation: bob 3.5s ease-in-out infinite; }
-.comfort h3 { font-family: "Gowun Batang", serif; font-size: 20px; margin: 0 0 10px; }
-.c-line { font-family: "Gowun Batang", serif; font-size: 15.5px; line-height: 1.75; margin: 0 0 4px; word-break: keep-all; }
+.comfort h3 { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 20px; margin: 0 0 10px; }
+.c-line { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 15.5px; line-height: 1.75; margin: 0 0 4px; word-break: keep-all; }
 .c-box { text-align: left; margin-top: 16px; background: var(--paper); border: 1px solid color-mix(in srgb, var(--lilac) 35%, var(--line)); border-radius: 10px; padding: 11px 13px; }
-.c-box b { font-family: "Gowun Batang", serif; font-size: 14px; }
+.c-box b { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 14px; }
 .c-box ul { margin: 6px 0 0; padding-left: 18px; font-size: 13.5px; line-height: 1.65; }
 .caseitem .endb { display: inline-block; font-size: 11px; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; margin-left: 4px; }
 @media (prefers-reduced-motion: reduce) { .c-whale { animation: none; } }
 .wnote .basis { margin-top: 6px; padding-top: 5px; border-top: 1px dashed color-mix(in srgb, var(--whale) 35%, var(--line)); font-family: "Noto Sans KR", sans-serif; font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
 
 .typerow { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-bottom: 8px; }
-.typerow .tl { font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13px; margin-right: 2px; }
+.typerow .tl { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13px; margin-right: 2px; }
 .typerow button { border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft); border-radius: 6px; padding: 2px 9px; font: inherit; font-size: 12.5px; cursor: pointer; }
 .typerow button[aria-pressed="true"] { border-color: var(--lilac); color: var(--ink); font-weight: 700; box-shadow: inset 0 0 0 1px var(--lilac); }
 .typerow .tn { flex-basis: 100%; font-size: 11.5px; color: var(--ink-soft); }
@@ -598,14 +598,14 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .rec.good { background: color-mix(in srgb, var(--t-grow) 14%, var(--paper)); }
 .rec.good::before { border-color: var(--t-grow); background: var(--t-grow); }
 
-.hidebtn { margin-left: auto; align-self: center; border: 1px solid rgba(255,246,213,.35); background: transparent; color: rgba(255,246,213,.85); border-radius: 7px; padding: 3px 10px; font-family: "Gowun Batang", serif; font-size: 12.5px; cursor: pointer; }
+.hidebtn { margin-left: auto; align-self: center; border: 1px solid rgba(255,246,213,.35); background: transparent; color: rgba(255,246,213,.85); border-radius: 7px; padding: 3px 10px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 12.5px; cursor: pointer; }
 .curtain { cursor: pointer; position: fixed; inset: 0; z-index: 40; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px;
   background: radial-gradient(1.4px 1.4px at 20% 25%, rgba(255,246,213,.8) 50%, transparent 51%), radial-gradient(1.2px 1.2px at 75% 18%, rgba(255,246,213,.6) 50%, transparent 51%), radial-gradient(1.4px 1.4px at 62% 70%, rgba(255,246,213,.5) 50%, transparent 51%), linear-gradient(180deg, #1B1F52, #2F2E78); color: #FFF6D5; text-align: center; }
 .curtain[hidden] { display: none; }
 .ct-whale { font-size: 44px; line-height: 1; animation: bob 4s ease-in-out infinite; }
-.ct-title { font-family: "Gowun Batang", serif; font-weight: 700; font-size: 18px; letter-spacing: .06em; }
-.ct-open { border: 1px solid rgba(255,246,213,.45); background: transparent; color: #FFF6D5; border-radius: 8px; padding: 9px 22px; font-family: "Gowun Batang", serif; font-size: 15px; cursor: pointer; }
-.ct-quick { border: 0; background: rgba(255,246,213,.12); color: #FFF6D5; border-radius: 8px; padding: 8px 18px; font-family: "Gowun Batang", serif; font-size: 14px; cursor: pointer; }
+.ct-title { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 18px; letter-spacing: .06em; }
+.ct-open { border: 1px solid rgba(255,246,213,.45); background: transparent; color: #FFF6D5; border-radius: 8px; padding: 9px 22px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 15px; cursor: pointer; }
+.ct-quick { border: 0; background: rgba(255,246,213,.12); color: #FFF6D5; border-radius: 8px; padding: 8px 18px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 14px; cursor: pointer; }
 .ct-note { word-break: keep-all; font-size: 12px; color: rgba(255,246,213,.6); line-height: 1.6; max-width: 260px; }
 @media (prefers-reduced-motion: reduce) { .ct-whale { animation: none; } }
 
@@ -615,7 +615,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 
 .stampbtn { display: flex; align-items: center; justify-content: center; gap: 8px; width: auto; margin: 6px 0 0; padding: 11px 20px;
   border: 1.5px dashed rgba(195,166,255,.75); background: rgba(255,246,213,.1); color: #FFF6D5; border-radius: 10px;
-  font-family: "Gowun Batang", serif; font-weight: 700; font-size: 15px; cursor: pointer; }
+  font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 15px; cursor: pointer; }
 .stampbtn small { font-family: "Noto Sans KR", sans-serif; font-weight: 400; font-size: 12px; color: rgba(255,246,213,.65); }
 .stampbtn .sb-dot { background: #C3A6FF !important; }
 .ct-done { min-height: 20px; font-size: 13px; color: #FFF6D5; }
@@ -624,14 +624,14 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .stampbtn:active { transform: scale(.98); }
 
 .rulebook { margin-top: 10px; background: var(--paper); border: 1px solid color-mix(in srgb, var(--lilac) 30%, var(--line)); border-radius: 10px; padding: 4px 14px 12px; }
-.rulebook h4 { display: flex; align-items: center; gap: 7px; margin: 12px 0 4px; font-family: "Gowun Batang", serif; font-size: 14px; color: var(--ink); }
+.rulebook h4 { display: flex; align-items: center; gap: 7px; margin: 12px 0 4px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 14px; color: var(--ink); }
 .rulebook h4::before { content: ""; width: 6px; height: 6px; border-radius: 1.5px; background: var(--lilac); transform: rotate(45deg); }
 .rulebook ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.65; color: var(--ink); }
 .rulebook li { margin-bottom: 2px; word-break: keep-all; }
 .rulebook .src { margin: 12px 0 0; font-size: 11.5px; color: var(--ink-soft); line-height: 1.5; word-break: keep-all; }
 
 .cmode { display: flex; gap: 14px; margin: 0 2px 6px; }
-.cmode button { border: 0; background: none; padding: 2px 0; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13.5px; color: var(--ink-soft); cursor: pointer; border-bottom: 2px solid transparent; }
+.cmode button { border: 0; background: none; padding: 2px 0; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13.5px; color: var(--ink-soft); cursor: pointer; border-bottom: 2px solid transparent; }
 .cmode button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--lilac); }
 .composer.asking .composer-row .seg { visibility: hidden; }
 .qbub { margin: 14px 0 0 60px; background: var(--paper); border: 1px dashed color-mix(in srgb, var(--lilac) 55%, var(--line)); border-radius: 14px 4px 14px 14px; padding: 8px 12px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; word-break: keep-all; }
@@ -642,7 +642,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 
 .daysep { display: flex; align-items: center; gap: 10px; margin: 18px 0 2px; font-size: 12px; color: var(--ink-soft); }
 .daysep::before, .daysep::after { content: ""; flex: 1; border-top: 1px solid var(--line); }
-.daysep span { font-family: "Gowun Batang", serif; font-weight: 700; }
+.daysep span { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; }
 .case .tx { padding: 2px 4px 10px; }
 .doc table { table-layout: fixed; }
 .doc th:first-child { width: 78px; }
@@ -651,7 +651,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 
 .fcard { margin-top: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px 8px; }
 .frow { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.frow .fl { flex-shrink: 0; width: 34px; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13.5px; color: var(--ink); }
+.frow .fl { flex-shrink: 0; width: 34px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13.5px; color: var(--ink); }
 .frow .textfield { height: 36px; background: var(--sea); }
 .frow input[type="date"] { flex: 1; min-width: 0; font-size: 13px; padding: 0 6px; }
 .frow .tilde { color: var(--ink-soft); }
@@ -674,7 +674,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .wnote .why p { margin: 6px 0 0; font-family: "Noto Sans KR", sans-serif; font-size: 13px; line-height: 1.6; }
 .mine-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
 .mine-h .who { margin: 0; }
-.copybtn { border: 0; background: var(--ink); color: var(--paper); border-radius: 7px; padding: 5px 14px; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13px; cursor: pointer; }
+.copybtn { border: 0; background: var(--ink); color: var(--paper); border-radius: 7px; padding: 5px 14px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13px; cursor: pointer; }
 #p-reply.chat .bub.mine textarea.draftta { min-height: 60px; overflow: hidden; resize: none; }
 .mine-f { display: flex; gap: 12px; margin-top: 6px; }
 .mine-f button { border: 0; background: none; color: var(--ink-soft); font: inherit; font-size: 12.5px; padding: 2px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
@@ -696,16 +696,16 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .clshint b { color: var(--lilac); }
 #p-quick.classmode .clshint { display: block; }
 .bkcard { margin-top: 12px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
-.bkcard h3 { margin: 0 0 6px; font-family: "Gowun Batang", serif; font-size: 15px; display: flex; align-items: center; gap: 7px; }
+.bkcard h3 { margin: 0 0 6px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 15px; display: flex; align-items: center; gap: 7px; }
 .bkcard h3::before { content: ""; width: 6px; height: 6px; border-radius: 1.5px; background: var(--lilac); transform: rotate(45deg); }
 .bkcard .textfield { background: var(--sea); }
 #bkUnlock { margin-top: 10px; }
 #bkUnlock[hidden] { display: none; }
 .bkguide { margin: 14px 2px 0; background: color-mix(in srgb, var(--whale) 8%, var(--paper)); border: 1px solid color-mix(in srgb, var(--whale) 30%, var(--line)); border-radius: 10px; padding: 10px 14px; }
-.bkguide summary { font-family: "Gowun Batang", serif; font-weight: 700; font-size: 14px; color: var(--ink); }
+.bkguide summary { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 14px; color: var(--ink); }
 .bkguide ol, .bkguide ul { margin: 8px 0 0; padding-left: 20px; font-size: 13.5px; line-height: 1.7; color: var(--ink); }
 .bkguide li { word-break: keep-all; }
-.bkwarn { margin: 10px 0 0; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13px; color: var(--ink); }
+.bkwarn { margin: 10px 0 0; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13px; color: var(--ink); }
 .bk-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 .bk-h h3 { margin: 0; }
 .pwtoggle { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-soft); cursor: pointer; }
@@ -721,7 +721,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .intro-card { width: 100%; max-width: 340px; background: var(--paper); border-radius: 16px; padding: 22px 20px 18px; text-align: center; }
 .intro-step[hidden] { display: none; }
 .i-whale { font-size: 40px; line-height: 1; margin-bottom: 10px; }
-.intro-card h3 { font-family: "Gowun Batang", serif; font-size: 18px; margin: 0 0 10px; }
+.intro-card h3 { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 18px; margin: 0 0 10px; }
 .intro-card a { color: var(--tide); }
 .intro-card p { font-size: 14px; line-height: 1.75; color: var(--ink); margin: 0 0 14px; word-break: keep-all; }
 .intro-dots { display: flex; justify-content: center; gap: 6px; margin-bottom: 14px; }
@@ -736,7 +736,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .ct-scene { width: 100%; aspect-ratio: 120 / 66; border-radius: 16px; overflow: hidden; box-shadow: 0 0 0 1px rgba(195,166,255,.25), 0 12px 30px rgba(0,0,0,.35); }
 .ct-scene svg { display: block; width: 100%; height: 100%; }
 .ct-title { margin-top: 22px; font-size: 22px; letter-spacing: .08em; }
-.ct-sub { margin-top: 4px; font-family: "Gowun Batang", serif; font-size: 13px; color: rgba(255,246,213,.6); letter-spacing: .04em; }
+.ct-sub { margin-top: 4px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 13px; color: rgba(255,246,213,.6); letter-spacing: .04em; }
 .curtain .stampbtn { margin-top: 26px; padding: 12px 30px; border-style: solid; border-color: rgba(195,166,255,.55); background: rgba(195,166,255,.14); }
 .ct-done { margin-top: 12px; }
 .ct-foot { position: absolute; left: 0; right: 0; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); text-align: center; font-size: 12px; color: rgba(255,246,213,.45); }
@@ -757,11 +757,11 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .composer.asking .composer-row .seg { display: none; }
 #p-reply.chat .composer.asking .composer-row #r_make { width: 100% !important; flex: 1; }
 .appfoot { margin-top: 18px; text-align: center; }
-.appfoot a { font-family: "Gowun Batang", serif; font-weight: 700; font-size: 14px; color: var(--lilac); text-decoration: none; }
+.appfoot a { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 14px; color: var(--lilac); text-decoration: none; }
 .appfoot .introagain { margin-top: 8px; }
 .appfoot .copy { margin: 14px 0 0; font-size: 11.5px; line-height: 1.6; color: var(--ink-soft); }
 .caseacts2 { display: flex; gap: 8px; margin-top: 12px; }
-.caseacts2 button { flex: 1; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: inherit; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 14px; cursor: pointer; }
+.caseacts2 button { flex: 1; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: inherit; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 14px; cursor: pointer; }
 .caseacts2 .go { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 .caseacts2 .delcase { color: var(--ink-soft); background: transparent; }
 .delconfirm .caseacts2 { margin-top: 4px; }
@@ -786,7 +786,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .savebar-top .pwtoggle { margin-left: auto; }
 .savebar-top #s_pdf { padding: 0 16px; height: 36px; font-size: 14px; flex-shrink: 0; }
 .savebar .pwrow { margin: 8px 4px 2px 0; }
-.sb-count { font-family: "Gowun Batang", serif; font-weight: 700; font-size: 14px; color: var(--ink); }
+.sb-count { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 14px; color: var(--ink); }
 .savebar .pwrow { margin-bottom: 8px; }
 #s_pwRow[hidden] { display: none; }
 #p-summary .doc-wrap { max-height: 520px; overflow-y: auto; overscroll-behavior: contain; border: 1.5px solid color-mix(in srgb, var(--lilac) 40%, var(--line)); border-radius: 10px; }
@@ -799,7 +799,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 #p-summary .fopts { padding: 6px 0 2px; }
 #p-summary .section-title { margin-top: 14px !important; margin-bottom: 6px; }
 #p-summary .section-title small { font-size: 11.5px; }
-.goneNote { margin: 0 0 12px; padding: 14px 16px; border-radius: 12px; background: color-mix(in srgb, var(--lilac) 12%, var(--paper)); border: 1.5px solid var(--lilac); box-shadow: 0 0 0 4px color-mix(in srgb, var(--lilac) 12%, transparent); font-family: "Gowun Batang", serif; font-weight: 700; font-size: 14.5px; line-height: 1.65; text-align: center; color: var(--ink); animation: gonePop .45s ease-out; }
+.goneNote { margin: 0 0 12px; padding: 14px 16px; border-radius: 12px; background: color-mix(in srgb, var(--lilac) 12%, var(--paper)); border: 1.5px solid var(--lilac); box-shadow: 0 0 0 4px color-mix(in srgb, var(--lilac) 12%, transparent); font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 14.5px; line-height: 1.65; text-align: center; color: var(--ink); animation: gonePop .45s ease-out; }
 @keyframes gonePop { 0% { opacity: 0; transform: translateY(-6px) scale(.97); } 100% { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .goneNote { animation: none; } }
 .bkbar #exportBtn { padding: 0 16px; height: 36px; font-size: 14px; flex-shrink: 0; }
@@ -816,7 +816,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .smodes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .smodes button { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 10px 4px 9px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink-soft); cursor: pointer; font: inherit; transition: border-color .15s, background .15s, transform .1s; }
 .smodes button i { font-style: normal; font-size: 20px; line-height: 1.2; filter: grayscale(.6); opacity: .75; }
-.smodes button b { font-family: "Gowun Batang", serif; font-size: 14px; color: var(--ink); }
+.smodes button b { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 14px; color: var(--ink); }
 .smodes button small { font-size: 11px; }
 .smodes button:active { transform: scale(.98); }
 .smodes button[data-sm="all"][aria-pressed="true"] { border-color: var(--t-kyo); background: color-mix(in srgb, var(--t-kyo) 16%, var(--paper)); }
@@ -838,7 +838,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .sbnight .sb-count small { font-family: "Noto Sans KR", sans-serif; font-weight: 400; font-size: 11px; color: var(--ink-soft); margin-bottom: 3px; }
 .sbnight #s_pdf:disabled { opacity: .45; }
 .pvhead { display: flex; justify-content: space-between; align-items: baseline; margin: 16px 4px 6px; }
-.pvhead span { font-family: "Gowun Batang", serif; font-weight: 700; font-size: 14px; color: var(--ink); }
+.pvhead span { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 14px; color: var(--ink); }
 .pvhead small { font-size: 11.5px; color: var(--ink-soft); }
 #p-summary .doc-wrap { border: 0 !important; box-shadow: 0 2px 4px rgba(27,31,82,.08), 0 10px 26px rgba(27,31,82,.12); border-radius: 6px !important; }
 /* 통일: 토글 막대는 연보라 톤 */
@@ -852,7 +852,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .bks-icon { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; font-size: 19px; background: color-mix(in srgb, var(--lilac) 12%, var(--paper)); flex-shrink: 0; }
 .bks-body { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.35; }
 .bks-body small { font-size: 11.5px; color: var(--ink-soft); margin-bottom: 2px; }
-.bks-body b { font-family: "Gowun Batang", serif; font-size: 16px; color: var(--ink); }
+.bks-body b { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 16px; color: var(--ink); }
 .bks-chip { flex-shrink: 0; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 12px; border: 1.5px solid var(--line); color: var(--ink-soft); }
 .bks-chip.ok { border-color: var(--t-life); color: var(--ink); background: color-mix(in srgb, var(--t-life) 16%, var(--paper)); }
 .bks-chip.some { border-color: var(--t-grow); color: var(--ink); background: color-mix(in srgb, var(--t-grow) 16%, var(--paper)); }
@@ -863,19 +863,19 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .bkbar .sb-count small { font-family: "Noto Sans KR", sans-serif; font-weight: 400; font-size: 11px; color: var(--ink-soft); margin-bottom: 3px; }
 .bkinfo { margin-top: 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--paper); overflow: hidden; }
 #p-backup .bkinfo .bkguide { margin: 0; padding: 10px 14px; border: 0; border-radius: 0; background: transparent; }
-#p-backup .bkinfo .bkguide summary { font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13.5px; cursor: pointer; }
+#p-backup .bkinfo .bkguide summary { font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13.5px; cursor: pointer; }
 #p-backup .bkinfo .bkdanger { margin: 0; padding: 10px 14px; border: 0; border-top: 1px dashed var(--line); border-radius: 0; background: color-mix(in srgb, var(--storm) 5%, var(--paper)); font-size: 12.5px; }
 .appfoot { margin-top: 22px; }
 .af-links { display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 13.5px; }
 .af-links span { color: var(--ink-soft); }
-.af-links .introagain { margin: 0; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13.5px; color: var(--lilac); text-decoration: none; }
+.af-links .introagain { margin: 0; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13.5px; color: var(--lilac); text-decoration: none; }
 .appfoot .copy { margin-top: 8px; font-size: 11px; }
 .bk-title { display: flex; flex-direction: column; line-height: 1.3; margin-right: auto; }
-.bk-title b { display: inline-flex; align-items: center; gap: 7px; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 17px; color: var(--ink); }
+.bk-title b { display: inline-flex; align-items: center; gap: 7px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 17px; color: var(--ink); }
 .bk-title b::before { content: ""; width: 7px; height: 7px; border-radius: 1.5px; background: var(--lilac); transform: rotate(45deg); }
 .bk-title small { white-space: nowrap; margin: 3px 0 0 14px; font-size: 11.5px; color: var(--ink-soft); }
 .bkbar .savebar-top .pwtoggle { margin-left: 0; white-space: nowrap; flex-shrink: 0; }
-.bkbar .bkbtn { width: 104px !important; height: 38px; padding: 0 !important; flex: 0 0 auto; margin-left: 0 !important; display: inline-flex; align-items: center; justify-content: center; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 14px; border-radius: var(--radius); cursor: pointer; }
+.bkbar .bkbtn { width: 104px !important; height: 38px; padding: 0 !important; flex: 0 0 auto; margin-left: 0 !important; display: inline-flex; align-items: center; justify-content: center; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 14px; border-radius: var(--radius); cursor: pointer; }
 .bkbar label.bkbtn { border: 1.5px solid var(--lilac); background: var(--paper); color: var(--ink); }
 .bkbar label.bkbtn:hover { background: color-mix(in srgb, var(--lilac) 10%, var(--paper)); }
 .bkbar .savebar-top { gap: 12px; }
@@ -899,7 +899,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .memos .acts .go { order: 1; height: 34px; padding: 0 14px; }
 .aiacts { display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 0 2px; }
 .aiacts .hint { margin-right: auto; font-size: 12px; color: var(--ink-soft); }
-.aiacts .aisum { height: 32px; padding: 0 12px; border-radius: var(--radius); border: 1.5px solid color-mix(in srgb, var(--lilac) 60%, var(--line)); background: color-mix(in srgb, var(--lilac) 8%, var(--paper)); color: var(--ink); font: inherit; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13px; cursor: pointer; white-space: nowrap; }
+.aiacts .aisum { height: 32px; padding: 0 12px; border-radius: var(--radius); border: 1.5px solid color-mix(in srgb, var(--lilac) 60%, var(--line)); background: color-mix(in srgb, var(--lilac) 8%, var(--paper)); color: var(--ink); font: inherit; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13px; cursor: pointer; white-space: nowrap; }
 .aiacts .aisum:hover { background: color-mix(in srgb, var(--lilac) 16%, var(--paper)); }
 
 /* 타임라인: 펼친 기록을 한 덩어리로 */
@@ -919,6 +919,10 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .extra .memo-h b { font-size: 13px; }
 .addmemo { margin-top: 4px; border: 1px dashed color-mix(in srgb, var(--lilac) 55%, var(--line)); background: transparent; color: var(--ink-soft); border-radius: 8px; padding: 5px 12px; font: inherit; font-size: 12.5px; cursor: pointer; }
 .memo-compose[hidden], .addmemo[hidden] { display: none; }
+.tdel { margin-top: 10px; text-align: right; font-size: 12.5px; color: var(--ink-soft); }
+.tdel button { background: none; border: 0; padding: 4px 2px; font: inherit; color: var(--ink-soft); text-decoration: underline; cursor: pointer; }
+.tdel .tdel-y { color: var(--seal); font-weight: 700; margin-left: 6px; }
+.tdel [hidden] { display: none; }
 .extra .aiacts { margin-top: 4px; padding-top: 8px; border-top: 1px dashed var(--line); }
 
 /* 펼친 기록 안의 보조 요소는 작게 */
@@ -951,7 +955,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 #list .item.open .rec[data-type]::before { border-width: 2px; }
 .bkconf { margin-top: 8px; padding: 9px 12px; border-radius: 10px; background: color-mix(in srgb, var(--lilac) 12%, var(--paper)); border: 1.5px solid var(--lilac); animation: gonePop .35s ease-out; }
 .bkconf[hidden] { display: none; }
-.bkconf b { display: block; font-family: "Gowun Batang", serif; font-size: 14px; color: var(--ink); }
+.bkconf b { display: block; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 14px; color: var(--ink); }
 .bkconf small { display: block; margin-top: 2px; font-size: 11.5px; color: var(--ink-soft); word-break: break-all; }
 .bkconf.bad { background: color-mix(in srgb, var(--storm) 8%, var(--paper)); border-color: color-mix(in srgb, var(--storm) 60%, var(--line)); }
 
@@ -961,7 +965,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .ctlock-row { display: flex; gap: 6px; width: 100%; max-width: 260px; }
 .ctlock-row input { flex: 1; min-width: 0; height: 40px; border-radius: 10px; border: 1.5px solid rgba(195,166,255,.6); background: rgba(255,255,255,.1); color: #FFF6D5; font: inherit; font-size: 18px; letter-spacing: .3em; text-align: center; }
 .ctlock-row input::placeholder { color: rgba(255,246,213,.45); letter-spacing: 0; font-size: 14px; }
-.ctlock-row button { height: 40px; padding: 0 16px; border: 0; border-radius: 10px; background: #C3A6FF; color: #1B1F52; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 14px; cursor: pointer; }
+.ctlock-row button { height: 40px; padding: 0 16px; border: 0; border-radius: 10px; background: #C3A6FF; color: #1B1F52; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 14px; cursor: pointer; }
 .ctpinmsg { min-height: 18px; font-size: 12.5px; color: #FFB4A8; text-align: center; max-width: 280px; line-height: 1.5; }
 .ctforgot { border: 0; background: none; color: rgba(255,246,213,.55); font: inherit; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 #lockCard .bkbtn.on { background: var(--paper) !important; color: var(--ink) !important; border: 1.5px solid var(--btn); }
@@ -974,7 +978,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .wipeconf .pwrow .textfield { height: 34px; font-size: 13px; }
 .wipeconf #wipeGo { height: 34px; background: var(--storm) !important; color: #fff !important; }
 /* 표 복사 */
-.copybtn2 { height: 36px; padding: 0 10px; border-radius: var(--radius); border: 1.5px solid var(--btn); background: var(--paper); color: var(--ink); font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13px; cursor: pointer; flex-shrink: 0; white-space: nowrap; }
+.copybtn2 { height: 36px; padding: 0 10px; border-radius: var(--radius); border: 1.5px solid var(--btn); background: var(--paper); color: var(--ink); font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13px; cursor: pointer; flex-shrink: 0; white-space: nowrap; }
 .copybtn2:disabled { opacity: .45; cursor: default; }
 .sbnight .savebar-top { gap: 8px; }
 .sbnight .sb-count, .sbnight .sb-count small, .sbnight .pwtoggle { white-space: nowrap; }
@@ -986,7 +990,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 #lockSheet .lockcard { position: relative; max-width: 360px; text-align: center; padding: 22px 20px 18px; background: var(--paper); }
 .lockx { position: absolute; top: 8px; right: 8px; border: 0; background: none; color: var(--ink-soft); font-size: 17px; cursor: pointer; padding: 6px 8px; }
 .lk-icon { font-size: 34px; line-height: 1; margin-bottom: 6px; }
-.lockcard h3 { margin: 0 0 6px; font-family: "Gowun Batang", serif; font-size: 18px; }
+.lockcard h3 { margin: 0 0 6px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 18px; }
 .lk-desc { margin: 0 0 14px; font-size: 13px; line-height: 1.65; color: var(--ink-soft); }
 .lk-pins { display: flex; gap: 6px; margin-bottom: 4px; }
 .lk-pins[hidden] { display: none; }
@@ -1052,7 +1056,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 #s_types button[data-t="갑질"][aria-pressed="true"] { border-color: var(--t-gap); }
 .pickbox { margin-top: 8px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
 .pickbox[hidden] { display: none; }
-.pickbox summary { cursor: pointer; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 13.5px; color: var(--ink); }
+.pickbox summary { cursor: pointer; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-weight: 700; font-size: 13.5px; color: var(--ink); }
 .pickbox summary b { font-family: "Noto Sans KR", sans-serif; font-weight: 500; font-size: 12px; color: var(--ink-soft); margin-left: 4px; }
 .pickhint { margin: 6px 0; font-size: 11.5px; color: var(--ink-soft); }
 .picklist { max-height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
@@ -1109,6 +1113,12 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 #quick .topline .modes button::after { inset: -12px 0 -7px; }
 .today button::after { inset: -12px -4px; }
 #goPending { margin-top: 12px; }
+</style>
+<style>
+@font-face { font-family: "GowunBatangLocal"; font-weight: 400; font-display: swap; src: url("gowun-batang-400.woff2") format("woff2"); }
+@font-face { font-family: "GowunBatangLocal"; font-weight: 700; font-display: swap; src: url("gowun-batang-700.woff2") format("woff2"); }
+@font-face { font-family: "GowunBatangLocal"; font-weight: 400; font-display: swap; src: url("gowun-batang-latin-400.woff2") format("woff2"); unicode-range: U+0000-00FF; }
+@font-face { font-family: "GowunBatangLocal"; font-weight: 700; font-display: swap; src: url("gowun-batang-latin-700.woff2") format("woff2"); unicode-range: U+0000-00FF; }
 </style>
 </head>
 <body>
@@ -2495,7 +2505,20 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       ms.map(function (m, k) { var d = new Date(m.at); return '<div class="memo"><span class="time">' + (r.timeOnly && k === 0 ? "채운 내용 · " : "") + dateStr(d, d.getFullYear() !== new Date().getFullYear()) + " " + timeStr(d) + '</span><div class="mt">' + esc(m.text) + "</div></div>"; }).join("") +
       (ms.length ? '<button type="button" class="addmemo">＋ 메모 덧붙이기</button>' : "") +
       '<div class="memo-compose"' + (ms.length ? " hidden" : "") + '><textarea class="textfield" rows="2" placeholder="' + (r.timeOnly && !ms.length ? "그때 있었던 일을 적어 채워 주세요" : "이후 경과, 추가로 알게 된 일, 보호자와 나눈 이야기…") + '"></textarea>' +
-      '<div class="acts"><span class="hint">남기면 고칠 수 없어요' + (TOUCH ? "" : " · Ctrl+Enter") + '</span><button type="button" class="go" disabled>남기기</button></div></div>';
+      '<div class="acts"><span class="hint">남기면 고칠 수 없어요' + (TOUCH ? "" : " · Ctrl+Enter") + '</span><button type="button" class="go" disabled>남기기</button></div></div>' +
+      (r.timeOnly && !ms.length ? '<div class="tdel"><button type="button" class="tdel-b">잘못 찍었나요? 이 시간 기록 지우기</button><span class="tdel-c" hidden>내용 없이 찍힌 시간만 지워요. <button type="button" class="tdel-y">지울게요</button><button type="button" class="tdel-n">취소</button></span></div>' : "");
+    var td = el.querySelector(".tdel");
+    if (td) {
+      td.querySelector(".tdel-b").addEventListener("click", function () { td.querySelector(".tdel-b").hidden = true; td.querySelector(".tdel-c").hidden = false; });
+      td.querySelector(".tdel-n").addEventListener("click", function () { td.querySelector(".tdel-b").hidden = false; td.querySelector(".tdel-c").hidden = true; });
+      td.querySelector(".tdel-y").addEventListener("click", function () {
+        if (r.memos && r.memos.length) return;
+        var i = records.indexOf(r); if (i < 0) return;
+        records.splice(i, 1);
+        if (!persist()) { records.splice(i, 0, r); showToast("저장 공간에 쓸 수 없어요."); return; }
+        afterChange(); showToast("잘못 찍은 시간 기록을 지웠어요");
+      });
+    }
     var ta = el.querySelector("textarea"), bt = el.querySelector(".go"), am = el.querySelector(".addmemo");
     if (am) am.addEventListener("click", function () { am.hidden = true; el.querySelector(".memo-compose").hidden = false; ta.focus(); });
     ta.addEventListener("input", function () { bt.disabled = !ta.value.trim(); });
