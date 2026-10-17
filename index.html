@@ -2480,11 +2480,21 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       b.addEventListener("click", function () {
         r.userType = b.dataset.t; persist();
         var item = el.closest(".item");
+        // 쓰던 메모가 있으면 유형을 바꿔도 지워지지 않게 옮겨 둔다
+        var oldTa = item && item.querySelector(".memo-compose textarea"), draft = oldTa ? oldTa.value : "", wasOpen = oldTa && !oldTa.closest(".memo-compose").hidden;
         if (item && item.parentNode) {
           var showDate = /월 \d+일/.test((item.querySelector(".time") || {}).textContent || "");
           var ni = recEl(r, splitTerms($("q").value), showDate);
           item.parentNode.replaceChild(ni, item);
           var nb = ni.querySelector(".rec"); if (nb) nb.click();
+          if (draft) {
+            var ta2 = ni.querySelector(".memo-compose textarea");
+            if (ta2) {
+              var mc = ta2.closest(".memo-compose"), am2 = ni.querySelector(".addmemo");
+              if (wasOpen) { mc.hidden = false; if (am2) am2.hidden = true; }
+              ta2.value = draft; ta2.dispatchEvent(new Event("input"));
+            }
+          }
         } else renderTypeRow(r, el);
       });
     });
