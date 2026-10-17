@@ -990,8 +990,19 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 @media (max-width: 390px) { .sbnight #s_pdf { padding: 0 10px !important; font-size: 13px !important; } .copybtn2 { padding: 0 8px; font-size: 12.5px; } .sbnight .savebar-top { gap: 6px; } .sbnight { padding-left: 12px; } }
 .lockbtn { margin-left: auto; align-self: center; width: 32px; height: 28px; border: 1px solid rgba(255,246,213,.35); background: transparent; border-radius: 7px; font-size: 14px; cursor: pointer; padding: 0; line-height: 1; }
 .lockbtn + .clsbtn { margin-left: 6px; }
+.aibtn:not([hidden]) + .lockbtn { margin-left: 6px; }
+.aibtn.on { border-color: #C3A6FF; background: rgba(195,166,255,.18); }
+.aicard h3 { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.aik-st { font-family: "Noto Sans KR", sans-serif; font-size: 11.5px; font-weight: 500; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 10px; padding: 1px 8px; }
+.aik-st.on { color: var(--tide); border-color: var(--tide); font-weight: 700; }
+.aik-row { display: flex; gap: 6px; margin-top: 12px; }
+.aik-row .textfield { flex: 1; min-width: 0; height: 38px; padding: 0 10px; }
+.aik-row .primary { flex: none; padding: 0 16px; }
+.aik-help { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; }
+.aik-help a { color: var(--tide); font-weight: 700; }
+.aik-warn { margin: 8px 0 0; font-size: 12px; color: var(--ink-soft); line-height: 1.55; background: var(--sea); border-radius: 8px; padding: 8px 10px; text-align: left; }
 .lockbtn.on { border-color: #C3A6FF; background: rgba(195,166,255,.18); }
-#lockSheet .lockcard { position: relative; max-width: 360px; text-align: center; padding: 22px 20px 18px; background: var(--paper); }
+#lockSheet .lockcard, #aiSheet .lockcard { position: relative; max-width: 360px; text-align: center; padding: 22px 20px 18px; background: var(--paper); }
 .lockx { position: absolute; top: 8px; right: 8px; border: 0; background: none; color: var(--ink-soft); font-size: 17px; cursor: pointer; padding: 6px 8px; }
 .lk-icon { font-size: 34px; line-height: 1; margin-bottom: 6px; }
 .lockcard h3 { margin: 0 0 6px; font-family: "GowunBatangLocal", "Gowun Batang", serif; font-size: 18px; }
@@ -1007,7 +1018,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 .lk-main { width: 100%; }
 .lk-sub { margin-top: 10px; border: 0; background: none; color: var(--ink-soft); font: inherit; font-size: 12.5px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .lk-sub[hidden] { display: none; }
-#lockSheet [hidden] { display: none !important; }
+#lockSheet [hidden], #aiSheet [hidden] { display: none !important; }
 /* 카드 제목 옆에 작은 설명 */
 .bk-title { flex-direction: row !important; align-items: baseline; gap: 7px; flex-wrap: nowrap; }
 .bk-title small { margin: 0 !important; white-space: nowrap; }
@@ -1153,7 +1164,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
 </svg>
 <div class="wrap">
   <div class="top">
-    <div class="brand"><span>🐋 고래실록</span><small>기억보다 먼저, 기록.</small><button type="button" class="lockbtn" id="lockBtn" aria-label="잠금 설정" title="잠금">🔓</button><button type="button" class="clsbtn" id="classBtn" aria-pressed="false">수업 중</button></div>
+    <div class="brand"><span>🐋 고래실록</span><small>기억보다 먼저, 기록.</small><button type="button" class="lockbtn aibtn" id="aiBtn" aria-label="AI 연결" title="AI 연결" hidden>✨</button><button type="button" class="lockbtn" id="lockBtn" aria-label="잠금 설정" title="잠금">🔓</button><button type="button" class="clsbtn" id="classBtn" aria-pressed="false">수업 중</button></div>
     <nav class="tabs" role="tablist" aria-label="고래실록 메뉴">
       <button class="tab" role="tab" data-tab="quick" aria-selected="true">퀵록</button>
       <button class="tab" role="tab" data-tab="timeline" aria-selected="false">타임라인</button>
@@ -1672,19 +1683,6 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       <div class="bkconf" id="bkConfIn" hidden></div>
     </div>
 
-    <div class="savebar bkbar aikey" id="aiKeyBox" hidden>
-      <div class="savebar-top">
-        <span class="bk-title"><b>AI 연결</b><small>선택</small></span>
-        <span class="aik-st" id="aiKeySt">연결 안 됨</span>
-      </div>
-      <div class="pwrow">
-        <input id="aiKeyIn" class="textfield" type="password" placeholder="Gemini 또는 Claude API 키 붙여 넣기" autocomplete="off" spellcheck="false">
-        <button type="button" class="primary" id="aiKeySave">연결</button>
-      </div>
-      <p class="bknote">무료로 시작하려면 <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>에서 Gemini 키를 받아 붙여 넣어요. 키는 이 기기에만 저장돼요.<br>연결하면 응대 문구·육하원칙 정리·고래에게 묻기를 AI가 도와요. AI에 보낼 땐 기록이 키를 낸 회사(Google 또는 Anthropic)로 전송되니, 학생 이름은 <b>가릴 이름</b>에 적어 가려 주세요.</p>
-      <button type="button" class="ctforgot" id="aiKeyDel" hidden style="color:var(--ink-soft)">연결 끊기</button>
-    </div>
-
     <div class="bkinfo">
       <details class="bkguide">
         <summary>다른 기기로 옮기는 방법</summary>
@@ -1743,6 +1741,22 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     <p class="lk-msg" id="lockMsg"></p>
     <button type="button" class="primary lk-main" id="lockToggle">잠금 켜기</button>
     <button type="button" class="lk-sub" id="lockOff" hidden>잠금 끄기</button>
+  </div>
+</div>
+
+<div class="sheet" id="aiSheet" hidden>
+  <div class="sheet-card lockcard aicard" role="dialog" aria-modal="true" aria-labelledby="aiTitle">
+    <button type="button" class="x lockx" id="aiClose" aria-label="닫기">✕</button>
+    <div class="lk-icon" aria-hidden="true">✨</div>
+    <h3 id="aiTitle">AI 연결 <small class="aik-st" id="aiKeySt">연결 안 됨</small></h3>
+    <p class="lk-desc">키를 연결하면 응대 문구, 육하원칙 정리,<br>고래에게 묻기를 AI가 도와요.</p>
+    <div class="aik-row">
+      <input id="aiKeyIn" class="textfield" type="password" placeholder="Gemini 또는 Claude API 키" autocomplete="off" spellcheck="false">
+      <button type="button" class="primary" id="aiKeySave">연결</button>
+    </div>
+    <p class="aik-help"><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>에서 받는 Gemini 키는 무료예요.<br>키는 이 기기에만 저장돼요.</p>
+    <p class="aik-warn">AI에 보낼 땐 기록이 키를 낸 회사(Google·Anthropic)로 전송돼요. 학생 이름은 <b>가릴 이름</b>에 적어 가려 주세요.</p>
+    <button type="button" class="lk-sub" id="aiKeyDel" hidden>연결 끊기</button>
   </div>
 </div>
 
@@ -2410,7 +2424,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
   /* ---------- 내 AI 키 연결 (웹 버전) ---------- */
   var AIKEY_KEY = "goraesillok.aikey";
   function getAiKey() { try { return localStorage.getItem(AIKEY_KEY) || ""; } catch (e) { return ""; } }
-  function keyKind(k) { return /^sk-ant-/.test(k) ? "claude" : /^AIza/.test(k) ? "gemini" : ""; }
+  function keyKind(k) { k = String(k || "").trim(); return /^sk-ant-/.test(k) ? "claude" : /^[A-Za-z0-9_\-.]{20,}$/.test(k) ? "gemini" : ""; }
   function parseJsonLoose(t) {
     t = String(t || "").replace(/^\s*```(?:json)?/i, "").replace(/```\s*$/, "").trim();
     try { return JSON.parse(t); } catch (e) {}
@@ -2462,13 +2476,13 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     if (IN_CLAUDE) return;
     var k = getAiKey();
     sampleFn = keyKind(k) ? makeKeySample(k) : null; sampleChecked = true;
-    var box = document.getElementById("aiKeyBox");
+    var box = document.getElementById("aiBtn");
     if (box) {
-      box.hidden = false;
+      box.hidden = false; box.classList.toggle("on", !!sampleFn);
       var st = document.getElementById("aiKeySt"), on = !!sampleFn;
       st.textContent = on ? (sampleFn.viaKey === "claude" ? "Claude 연결됨" : "Gemini 연결됨") : "연결 안 됨"; st.className = "aik-st" + (on ? " on" : "");
       document.getElementById("aiKeyDel").hidden = !on;
-      document.getElementById("aiKeyIn").placeholder = on ? "다른 키로 바꾸려면 붙여 넣기" : "Gemini 또는 Claude API 키 붙여 넣기";
+      document.getElementById("aiKeyIn").placeholder = on ? "다른 키로 바꾸려면 붙여 넣기" : "Gemini 또는 Claude API 키";
     }
     var mb = document.getElementById("maskBox"); if (mb) mb.hidden = !sampleFn;
     if (typeof aiNote === "function") aiNote();
@@ -2477,7 +2491,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
   applyAiKey();
   $("aiKeySave").addEventListener("click", function () {
     var k = $("aiKeyIn").value.trim();
-    if (!keyKind(k)) { showToast("Gemini 키(AIza로 시작)나 Claude 키(sk-ant-로 시작)를 붙여 넣어 주세요."); return; }
+    if (!keyKind(k)) { showToast("Google AI Studio에서 받은 Gemini 키나 Claude 키를 그대로 붙여 넣어 주세요."); return; }
     var btn = $("aiKeySave"); btn.disabled = true; btn.textContent = "확인 중…";
     makeKeySample(k).json('{"ok": true} 라고만 답하세요.').then(function () {
       try { localStorage.setItem(AIKEY_KEY, k); } catch (e) {}
@@ -2486,12 +2500,15 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       showToast(e && e.code === "not_granted" ? "키가 맞지 않아요. 다시 확인해 주세요." : e && e.code === "rate_limited" ? "요청이 많아요. 잠시 뒤 다시 눌러 주세요." : "연결하지 못했어요. 인터넷과 키를 확인해 주세요.");
     }).then(function () { btn.disabled = false; btn.textContent = "연결"; });
   });
+  $("aiBtn").addEventListener("click", function () { $("aiSheet").hidden = false; setTimeout(function () { $("aiKeyIn").focus(); }, 50); });
+  $("aiClose").addEventListener("click", function () { $("aiSheet").hidden = true; });
+  $("aiSheet").addEventListener("click", function (e) { if (e.target === $("aiSheet")) $("aiSheet").hidden = true; });
   $("aiKeyIn").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); $("aiKeySave").click(); } });
   $("aiKeyDel").addEventListener("click", function () { try { localStorage.removeItem(AIKEY_KEY); } catch (e) {} applyAiKey(); showToast("AI 연결을 끊었어요"); });
   function aiNote() {
     var n = document.getElementById("aiNote"); if (!n) return;
     n.innerHTML = IN_CLAUDE ? "지금은 AI 없이 <b>기본 틀</b>로 도와드려요. Claude에 로그인하면 상황에 맞춘 추천을 받을 수 있어요."
-      : "지금은 AI 없이 <b>기본 틀</b>로 도와드려요. <b>백업</b> 탭에서 <b>AI 연결</b>(무료 Gemini 키)을 하면 상황에 맞춘 문구를 받아요.";
+      : "지금은 AI 없이 <b>기본 틀</b>로 도와드려요. 위쪽 <b>✨</b>에서 <b>AI 연결</b>(무료 Gemini 키)을 하면 상황에 맞춘 문구를 받아요.";
     // 웹에서는 응대를 시작하기 전 빈 화면에서만 알린다
     n.hidden = !(sampleChecked && !sampleFn) || (!IN_CLAUDE && !!currentCase);
   }
@@ -2661,7 +2678,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       return;
     }
     if (!sampleFn) {
-      if (sampleChecked) el.innerHTML = '<p class="sum-note">' + (IN_CLAUDE ? "Claude에 로그인하면 AI로 육하원칙 정리를 할 수 있어요." : "백업 탭에서 <b>AI 연결</b>을 하면 육하원칙으로 정리할 수 있어요.") + "</p>";
+      if (sampleChecked) el.innerHTML = '<p class="sum-note">' + (IN_CLAUDE ? "Claude에 로그인하면 AI로 육하원칙 정리를 할 수 있어요." : "위쪽 <b>✨ AI 연결</b>을 하면 육하원칙으로 정리할 수 있어요.") + "</p>";
       return;
     }
     var a2 = document.createElement("div"); a2.className = "acts aiacts";
