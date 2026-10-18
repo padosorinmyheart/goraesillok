@@ -2132,6 +2132,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     if (e.altKey && !e.ctrlKey && !e.metaKey && e.code === "KeyT" && $("intro").hidden) { e.preventDefault(); stampTime(); return; }
   });
   /* ---------- 웨일 확장앱과 이어지기 ---------- */
+  function stuName(c) { var n = (c && c.student) || "학생"; return n === "학생" ? "학생" : n + " 학생"; }
   var pendingSource = null, pendingType = "", replySource = null;
   function srcLabel(src) { if (!src) return ""; var h = ""; try { h = new URL(src.url).hostname.replace(/^www\./, ""); } catch (e) {} return (src.title ? src.title : h) + (src.title && h ? " · " + h : ""); }
   (function () {
@@ -2961,11 +2962,11 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     return "특이민원 발생보고서 (초안)\n\n" +
       "□ 발생일자: " + isoDay(d).replace(/-/g, ". ") + ". " + timeStr(d) + "\n" +
       "□ 특이민원 유형: " + kind + "\n" +
-      "□ 민원인: " + c.student + " 학생 보호자 (연락 방법: " + (t.way === "call" ? "전화" : "문자") + ")\n" +
+      "□ 민원인: " + stuName(c) + " 보호자 (연락 방법: " + (t.way === "call" ? "전화" : "문자") + ")\n" +
       "□ 담당자: " + (authorName() || "[성명] / 담당업무: [과목·담임]") + "\n\n" +
       "□ 발생요지 (육하원칙)\n" +
       "- 언제: " + dateStr(d, true) + " " + timeStr(d) + "\n" +
-      "- 누가: " + c.student + " 학생 보호자가\n" +
+      "- 누가: " + stuName(c) + " 보호자가\n" +
       "- 누구에게: 담당 교사에게\n" +
       "- 어떻게: " + (t.way === "call" ? "전화 통화 중" : "문자로") + "\n" +
       "- 무엇을: \"" + p.replace(/\s+/g, " ").slice(0, 200) + "\"라고 말함\n" +
@@ -2993,7 +2994,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     var t = hot[hot.length - 1] || c.turns[c.turns.length - 1];
     var d = new Date(t.at);
     setMode("simple", true);
-    input.value = shortDate(d) + " " + timeStr(d) + " " + c.student + " 학생 보호자 " + (t.way === "call" ? "통화" : "문자") + " 응대.\n보호자 발언: \"" + t.parent.replace(/\s+/g, " ").slice(0, 160) + "\"\n교육활동 침해로 볼 수 있는 표현이 있어 응대를 마침.";
+    input.value = shortDate(d) + " " + timeStr(d) + " " + stuName(c) + " 보호자 " + (t.way === "call" ? "통화" : "문자") + " 응대.\n보호자 발언: \"" + t.parent.replace(/\s+/g, " ").slice(0, 160) + "\"\n교육활동 침해로 볼 수 있는 표현이 있어 응대를 마침.";
     updateSave(); onNewEntry();
     openTab("quick");
     input.focus();
@@ -3006,7 +3007,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
     p.classList.toggle("has-case", !!currentCase); p.classList.toggle("no-case", !currentCase);
     var wx = "없음";
     if (currentCase) {
-      $("barName").textContent = currentCase.student + " 학생";
+      $("barName").textContent = stuName(currentCase);
       $("barMeta").textContent = "근거 기록 " + currentCase.recordCount + "건 · " + fmtAt(currentCase.createdAt) + " 시작";
       var last = currentCase.turns[currentCase.turns.length - 1];
       if (last && last.res.교권침해) wx = last.res.교권침해.판단 || "없음";
@@ -3803,7 +3804,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
           "<td>" + esc(t.parent) + (v.판단 === "높음" ? "\n<b>[교권침해 가능성]</b>" + (v.이유 ? " " + esc(v.이유.replace(/\*\*/g, "")) : "") : v.판단 === "주의" ? "\n[주의]" : "") + "</td>" +
           "<td>" + esc(t.sent || "") + "</td></tr>";
       }).map(function (h, k) { return { at: c.turns[k].at, html: h }; }).concat(orows).sort(function (x, y) { return x.at < y.at ? -1 : 1; }).map(function (x) { return x.html; }).join("");
-      return '<h4 class="sub">' + esc(c.student) + " 학생 보호자 응대 · " + fmtAt(c.createdAt) + " 시작" + (c.endedAt ? " · " + fmtAt(c.endedAt) + " 마침" : "") + "</h4>" +
+      return '<h4 class="sub">' + esc(stuName(c)) + " 보호자 응대 · " + fmtAt(c.createdAt) + " 시작" + (c.endedAt ? " · " + fmtAt(c.endedAt) + " 마침" : "") + "</h4>" +
         '<table><thead><tr><th>일시</th><th>보호자 말</th><th>교사 응대</th></tr></thead><tbody>' + rows + "</tbody></table>";
     }).join("");
     $("doc").innerHTML = "<h3>고래실록 보호자 응대 기록</h3>" +
@@ -3845,11 +3846,11 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
   }
   function renderPick() {
     var list = $("s_pickList"), items = [];
-    if (sumMode === "cases") items = summaryCasesBase().map(function (c) { return { id: "c_" + c.id, at: c.createdAt, tag: "응대", text: c.student + " 학생 보호자 응대 · 주고받은 말 " + c.turns.length + "번" }; });
+    if (sumMode === "cases") items = summaryCasesBase().map(function (c) { return { id: "c_" + c.id, at: c.createdAt, tag: "응대", text: stuName(c) + " 보호자 응대 · 주고받은 말 " + c.turns.length + "번" }; });
     else {
       var rs = sumMode === "grow" ? growthBase() : summaryBase();
       items = rs.map(function (r) { var fm = filled(r); return { id: r.id, at: r.eventAt || r.createdAt, tag: typeInfo(r).t || "", text: fm ? fm.text : r.text }; });
-      if (sumMode === "all" && casesOn()) items = items.concat(summaryCasesBase().map(function (c) { return { id: "c_" + c.id, at: c.createdAt, tag: "응대", text: c.student + " 학생 보호자 응대" }; }));
+      if (sumMode === "all" && casesOn()) items = items.concat(summaryCasesBase().map(function (c) { return { id: "c_" + c.id, at: c.createdAt, tag: "응대", text: stuName(c) + " 보호자 응대" }; }));
     }
     var on = items.filter(function (x) { return !sumExcl[x.id]; }).length;
     $("s_pickN").textContent = items.length ? on + " / " + items.length : "";
@@ -3883,7 +3884,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       return items.map(function (x, i) {
         var d = new Date(x.at);
         return "<tr><td class=\"when\">" + isoDay(d).replace(/-/g, ".") + "<br>" + timeStr(d) + "<br>" + (x.way === "call" ? "통화" : "문자") + "</td>" +
-          "<td>" + (i === 0 ? "<b>" + esc(c.student) + " 학생 건</b>\n" : "") + x.left + "</td>" +
+          "<td>" + (i === 0 ? "<b>" + esc(stuName(c)) + " 건</b>\n" : "") + x.left + "</td>" +
           "<td>" + esc(cut(x.right, 160)) + "</td></tr>";
       }).join("");
     }).join("");
