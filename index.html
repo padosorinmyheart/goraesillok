@@ -3290,7 +3290,7 @@ mark.kw-mild { background: color-mix(in srgb, #E0A93A 30%, transparent); color: 
       if (nxt) lines.push(nxt);
       lines.push("더 궁금하신 점 있으십니까?");
       var call = lines.map(function (x, k) { return (k + 1) + ". " + x; }).join("\n");
-      return out({ 교권침해: o.v || NONE, 요지: o.요지, 핵심: o.핵심 + (off ? " · 지금은 근무시간 밖이라 꼭 바로 답하지 않아도 돼요." : ""), 초안: way === "call" ? call : text, 근거: o.근거, 사실관계: o.사실관계 });
+      return out({ 교권침해: o.v || NONE, 요지: o.요지, 핵심: o.핵심 + (off ? (/[.!?]$/.test(o.핵심) ? " " : " · ") + "지금은 근무시간 밖이라 꼭 바로 답하지 않아도 돼요." : ""), 초안: way === "call" ? call : text, 근거: o.근거, 사실관계: o.사실관계 });
     }
     if (intent === "폭언") return out({
       교권침해: HIGHV("**폭언이나 위협**으로 볼 수 있는 표현이 있어요. 경범죄처벌법(불안감조성)이나 협박에 해당될 수 있어요."),
